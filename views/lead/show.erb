@@ -9,14 +9,20 @@
     </div>
   </div>
 
-  <h3>Summary</h3>
-  <p><%= @lead.summary %></p>
-  <a href="https://<%=@lead.link %>">Link</a>
+  <div>
+    <h3>Summary</h3>
+    <p><%= @lead.summary %></p>
 
-  <h3>Notes</h3>
-  <p><%= @lead.comments %></p>
+    <div>
+      <a href="https://<%=@lead.link %>">Link</a>
+      <a href="/lead/<%=@lead.id%>/edit">Edit</a>
+    </div>
 
-  <a href="/lead">Back to leads</a>
+    <h3>Notes</h3>
+    <p><%= @lead.comments %></p>
+
+    <a href="/lead">Back to leads</a>
+  </div>
 </div>
 
 <div>
