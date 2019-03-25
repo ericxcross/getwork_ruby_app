@@ -1,0 +1,28 @@
+<div>
+  <div class="container">
+    <div>
+      <h1><%= @company.name %></h1>
+      <h2><%= @lead.name %></h2>
+    </div>
+    <div>
+      <h3>Status: <%= @lead.status.name %></h3>
+    </div>
+  </div>
+
+  <h3>Summary</h3>
+  <p><%= @lead.summary %></p>
+  <a href="https://<%=@lead.link %>">Link</a>
+
+  <h3>Notes</h3>
+  <p><%= @lead.comments %></p>
+
+  <a href="/lead">Back to leads</a>
+</div>
+
+<div>
+  <h2><%= @company.name %></h2>
+  <h3><%= @company.industry%></h3>
+  <p><%= @company.info %></p>
+
+  <a href="/companies">Back to companies</a>
+</div>

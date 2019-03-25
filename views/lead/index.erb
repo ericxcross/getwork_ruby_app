@@ -1,17 +1,26 @@
 <a href="/leads/new">Add New Lead</a>
 
-<div class="leads_list">
+<ul class = "sort">
+  <h1>Sort By:</h1>
+  <li><a href="/lead">alphabetical</a></li>
+  <li><a href="/lead/date-added">date added</a></li>
+  <li><a href="/lead/status">status</a></li>
+</ul>
+
+<div class="lead_list">
   <%for lead in @leads%>
-    <a href="/leads/<%lead.id%>" class="container">
-      <div class="item_1">
-        <h2><%= lead.company.name %></h2>
-        <h3><%= lead.name %></h3>
-      </div>
-      <div class="item_2">
-        <p><%= lead.summary[0,90] %><%=p '...' if lead.summary.length > 90%></p>
-      </div>
-      <div class="item_3">
-        <h3><%= lead.status.name %></h3>
+    <a href = "/lead/<%=lead.id%>" class="container">
+      <div>
+        <div class="item_1">
+          <h2><%= lead.company.name %></h2>
+          <h3><%= lead.name %></h3>
+        </div>
+        <div class="item_2">
+          <p><%= lead.summary[0,255] %><%=p '...' if lead.summary.length > 255%></p>
+        </div>
+        <div class="item_3">
+          <h3><%= lead.status.name %></h3>
+        </div>
       </div>
     </a>
   <%end%>

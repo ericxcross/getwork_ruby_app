@@ -1,7 +1,7 @@
 require_relative('../db/sql_runner.rb')
 
 class Company
-  attr_reader :id, :name, :industry, :contact, :date_added
+  attr_reader :id, :name, :industry, :date_added, :contact, :info
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
@@ -9,17 +9,18 @@ class Company
     @industry = options['industry']
     @date_added = options['date_added'] if options['date_added']
     @contact = options['contact']
+    @info = options['info']
   end
 
   def save()
-    sql = 'INSERT INTO companies (name, industry, contact) VALUES ($1, $2, $3) RETURNING id'
-    values = [@name, @industry, @contact]
+    sql = 'INSERT INTO companies (name, industry, contact, info) VALUES ($1, $2, $3, $4) RETURNING id'
+    values = [@name, @industry, @contact, @info]
     @id  = SqlRunner.run(sql, values).first['id'].to_i
   end
 
   def update()
-    sql = 'UPDATE companies SET (name, industry, contact) = ($1, $2, $3) WHERE id = $4'
-    values = [@name, @industry, @contact, @id]
+    sql = 'UPDATE companies SET (name, industry, contact, info) = ($1, $2, $3, $4) WHERE id = $5'
+    values = [@name, @industry, @contact, @info, @id]
     SqlRunner.run(sql, values)
   end
 

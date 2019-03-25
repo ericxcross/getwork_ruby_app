@@ -13,7 +13,8 @@ CREATE TABLE companies (
   name VARCHAR(255) NOT NULL,
   date_added timestamptz NOT NULL DEFAULT now(),
   industry VARCHAR(255),
-  contact TEXT
+  contact TEXT,
+  info TEXT
 );
 
 CREATE TABLE leads (

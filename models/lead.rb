@@ -1,4 +1,6 @@
 require_relative('../db/sql_runner.rb')
+require_relative('./company.rb')
+require_relative('./status.rb')
 
 class Lead
   attr_accessor :company_id, :status_id, :name, :date_added, :link, :summary, :comments
@@ -48,22 +50,22 @@ class Lead
   def self.find(id)
     sql = 'SELECT * FROM leads WHERE id = $1'
     values = [id]
-    result = SqlRunner.run(sql, values)
-    return result.map{|hash| Lead.new(hash)}.first
+    result = SqlRunner.run(sql, values).first
+    return Lead.new(result)
   end
 
   def company()
     sql = 'SELECT * FROM companies WHERE id = $1'
     values = [@company_id]
-    result = SqlRunner.run(sql, values)
-    return result.map{|hash| Lead.new(hash)}.first
+    result = SqlRunner.run(sql, values).first
+   return Company.new(result)
   end
 
   def status()
     sql = 'SELECT * FROM status WHERE id = $1'
     values = [@status_id]
-    result = SqlRunner.run(sql, values)
-    return result.map{|hash| Lead.new(hash)}.first
+    result = SqlRunner.run(sql, values).first
+   return Status.new(result)
   end
 
 
