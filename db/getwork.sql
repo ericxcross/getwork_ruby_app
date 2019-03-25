@@ -11,8 +11,9 @@ CREATE TABLE status (
 CREATE TABLE companies (
   id SERIAL4 PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
+  date_added timestamptz NOT NULL DEFAULT now(),
   industry VARCHAR(255),
-  contact_details TEXT
+  contact TEXT
 );
 
 CREATE TABLE leads (
@@ -21,9 +22,9 @@ CREATE TABLE leads (
   status_id INT4 REFERENCES status(id),
   date_added timestamptz NOT NULL DEFAULT now(),
   name VARCHAR(255),
-  url VARCHAR(255),
+  link VARCHAR(255),
   summary TEXT,
-  application_details TEXT
+  comments TEXT
 );
 
 SET TIME ZONE 'Europe/London';

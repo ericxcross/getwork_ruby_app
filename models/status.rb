@@ -1,4 +1,4 @@
-require ('../sql_runner.rb')
+require_relative('../db/sql_runner.rb')
 
 class Status
   attr_reader :name, :color, :id
@@ -10,7 +10,7 @@ class Status
   end
 
   def save()
-    sql = 'INSERT INTO status (name, color) VALUES ($1, $2)'
+    sql = 'INSERT INTO status (name, color) VALUES ($1, $2) RETURNING id'
     values = [@name, @color]
     @id  = SqlRunner.run(sql, values).first['id'].to_i
   end
@@ -32,8 +32,8 @@ class Status
     SqlRunner.run(sql)
   end
 
-  def self.all()
-    sql = 'SELECT * FROM status'
+  def self.all() #order by ID asc (in backend all status are created in order)
+    sql = 'SELECT * FROM status ORDER BY id ASC'
     result = SqlRunner.run(sql)
     return result.map{|hash| Status.new(hash)}
   end
