@@ -41,6 +41,24 @@ class Company
     return result.map{|hash| Company.new(hash)}
   end
 
+  def self.find_by_name(name)
+    sql = "SELECT * FROM companies WHERE name = $1"
+    values = [name]
+    result = SqlRunner.run(sql, values).first
+    return Company.new(result) if result
+  end
+
+  def self.company_by_name(name)
+    company = Company.find_by_name(name)
+    if company != nil
+      return company.id
+    else
+      company = Company.new({'name' => name})
+      company.save()
+      return company.id
+    end
+  end
+
   def jobs()
     sql = 'SELECT * FROM leads WHERE company_id = $1'
     values = [@id]

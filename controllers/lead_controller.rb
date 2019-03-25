@@ -2,13 +2,21 @@ require('sinatra')
 require('sinatra/contrib/all')
 require('pry-byebug')
 
-require_relative('../models/lead')
-require_relative('../models/company')
-require_relative('../models/status')
+require_relative('../models/lead.rb')
+require_relative('../models/company.rb')
+require_relative('../models/status.rb')
+
+also_reload('../models/*')
 
 get '/lead' do
   @leads = Lead.all()
   erb (:"/lead/index")
+end
+
+get '/lead/new' do
+  @companies = Company.all()
+  @status_list = Status.all()
+  erb(:"/lead/edit")
 end
 
 get '/lead/:id/edit' do #Edit / New Lead
@@ -24,8 +32,14 @@ get '/lead/:id' do
   erb (:"/lead/show")
 end
 
-post '/lead/:id' do #Post back EDIT or NEW
-  @lead = Lead.new(params)
-  params[:id] == 0 ? @lead.save : @lead.update
+post '/lead/:id' do #EDIT or NEW
+
+  #check if company exists, return existing company or new company.
+  params['company_id'] = Company.company_by_name(params['company_name'])
+  #check if the the lead is being created or updated
+  # binding.pry
+  lead = Lead.new(params)
+  lead.id == 0 ? lead.save : lead.update
+
   redirect '/lead'
 end
