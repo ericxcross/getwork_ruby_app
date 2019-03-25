@@ -1,0 +1,18 @@
+<a href="/leads/new">Add New Lead</a>
+
+<div class="leads_list">
+  <%for lead in @leads%>
+    <a href="/leads/<%lead.id%>" class="container">
+      <div class="item_1">
+        <h2><%= lead.company.name %></h2>
+        <h3><%= lead.name %></h3>
+      </div>
+      <div class="item_2">
+        <p><%= lead.summary[0,90] %><%=p '...' if lead.summary.length > 90%></p>
+      </div>
+      <div class="item_3">
+        <h3><%= lead.status.name %></h3>
+      </div>
+    </a>
+  <%end%>
+</div>

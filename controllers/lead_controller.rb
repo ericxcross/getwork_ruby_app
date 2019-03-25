@@ -6,5 +6,5 @@ require_relative('../models/lead')
 
 get '/lead' do
   @leads = Lead.all()
-  erb (:index)
+  erb (:"/lead/index")
 end

@@ -44,7 +44,7 @@ class Lead
     result = SqlRunner.run(sql)
     return result.map{|hash| Lead.new(hash)}
   end
-  
+
   def self.find(id)
     sql = 'SELECT * FROM leads WHERE id = $1'
     values = [id]
@@ -52,6 +52,19 @@ class Lead
     return result.map{|hash| Lead.new(hash)}.first
   end
 
+  def company()
+    sql = 'SELECT * FROM companies WHERE id = $1'
+    values = [@company_id]
+    result = SqlRunner.run(sql, values)
+    return result.map{|hash| Lead.new(hash)}.first
+  end
+
+  def status()
+    sql = 'SELECT * FROM status WHERE id = $1'
+    values = [@status_id]
+    result = SqlRunner.run(sql, values)
+    return result.map{|hash| Lead.new(hash)}.first
+  end
 
 
 end

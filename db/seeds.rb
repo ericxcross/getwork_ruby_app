@@ -3,6 +3,8 @@ require_relative('../models/company.rb')
 require_relative('../models/lead.rb')
 
 ## SEED STATUSES
+Lead.delete_all
+Company.delete_all
 Status.delete_all
 
 status1 = Status.new({
@@ -54,7 +56,6 @@ status8 = Status.new({
 status8.save
 
 ##SEED COMPANIES
-Company.delete_all
 
 company1 = Company.new({
   'name' => 'BBC',
@@ -92,14 +93,13 @@ company5 = Company.new({
 company5.save
 
 ##SEED LEADS
-Lead.delete_all
 
 lead1 = Lead.new({
   'company_id' => company1.id,
   'status_id' => status1.id,
   'name' => 'UX Designer 1',
   'link' => 'www.bbc.co.uk',
-  'summary' => 'another job',
+  'summary' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod rutrum felis, ac facilisis nulla posuere commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed rhoncus mauris vel orci volutpat elementum. Sed ultricies diam convallis lorem tristique luctus. Curabitur venenatis, augue at ultricies dignissim, odio lorem accumsan sem, at luctus neque orci vitae odio. Proin orci risus, sollicitudin eu semper vitae, dictum sit amet diam. Quisque convallis vitae diam eu bibendum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
   'comments' => 'include new media project in application portfolio'
   })
 lead1.save
