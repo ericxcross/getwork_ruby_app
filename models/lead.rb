@@ -3,32 +3,31 @@ require_relative('./company.rb')
 require_relative('./status.rb')
 
 class Lead
-  attr_accessor :company_id, :status_id, :date_added, :last_updated, :name, :link, :summary, :comments
+  attr_accessor :company_id, :last_updated, :name, :link, :summary
   attr_reader :id
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @company_id = options['company_id'].to_i if options['company_id']
-    @action_id = options['action_id'].to_i if options['action_id']
-    @date_added = options['date_added'] if options['date_added']
-    @last_updated = options['last_updated'] if options['last_updated']
+    @last_updated = date.parse(options['last_updated']) if options['last_updated']
 
+    @company_id = options['company_id'].to_i if options['company_id']
     @name = options['name']
     @link = options['link']
     @summary = options['summary']
-    @comments = options['comments']
   end
 
 
   def save()
-    sql = 'INSERT INTO leads (company_id, status_id, name, link, summary, comments) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id'
-    values = [@company_id, @status_id, @name, @link, @summary, @comments]
+    @last_updated = Date.today
+    sql = 'INSERT INTO leads (company_id, name, link, last_updated, summary) VALUES ($1, $2, $3, $4, $5) RETURNING id'
+    values = [@company_id, @name, @link, @last_updated, @summary]
     @id  = SqlRunner.run(sql, values).first['id'].to_i
   end
 
   def update()
-    sql = 'UPDATE leads SET (company_id, status_id, name, link, summary, comments) = ($1, $2, $3, $4, $5, $6) WHERE id = $7'
-    values = [@company_id, @status_id, @name, @link, @summary, @comments, @id]
+    @last_updated = Date.today
+    sql = 'UPDATE leads SET (company_id, name, link, summary, last_updated) = ($1, $2, $3, $4, $5) WHERE id = $6'
+    values = [@company_id, @name, @link, @summary, @last_updated, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -44,12 +43,6 @@ class Lead
   end
 
   def self.all() #returns leads in alphabetical order
-    sql = 'SELECT * FROM leads ORDER BY status_id DESC, name ASC'
-    result = SqlRunner.run(sql)
-    return result.map{|hash| Lead.new(hash)}
-  end
-
-  def self.all_by_letter() #returns leads in alphabetical order
     sql = 'SELECT * FROM leads ORDER BY name ASC'
     result = SqlRunner.run(sql)
     return result.map{|hash| Lead.new(hash)}
@@ -60,6 +53,12 @@ class Lead
     result = SqlRunner.run(sql)
     return result.map{|hash| Lead.new(hash)}
   end
+
+  # def self.all_by_due_date() #returns leads in alphabetical order
+  #   sql = 'SELECT * FROM leads ORDER BY name ASC'
+  #   result = SqlRunner.run(sql)
+  #   return result.map{|hash| Lead.new(hash)}
+  # end
 
   def self.find(id)
     sql = 'SELECT * FROM leads WHERE id = $1'
@@ -75,11 +74,11 @@ class Lead
    return Company.new(result)
   end
 
-  def status()
-    sql = 'SELECT * FROM status WHERE id = $1'
-    values = [@status_id]
-    result = SqlRunner.run(sql, values).first
-   return Status.new(result)
+  def action()
+    sql = 'SELECT * FROM action WHERE id = $1 ORDER BY id DESC'
+    values = [@action_id]
+    result = SqlRunner.run(sql, values)
+   return result.map{|hash| Lead.new(hash)}
   end
 
 

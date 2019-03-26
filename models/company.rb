@@ -1,26 +1,25 @@
 require_relative('../db/sql_runner.rb')
 
 class Company
-  attr_reader :id, :name, :industry, :date_added, :contact, :info
+  attr_reader :id, :name, :industry, :contact, :summary
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @name = options['name']
     @industry = options['industry']
-    @date_added = options['date_added'] if options['date_added']
     @contact = options['contact']
-    @info = options['info']
+    @summary = options['summary']
   end
 
   def save()
-    sql = 'INSERT INTO companies (name, industry, contact, info) VALUES ($1, $2, $3, $4) RETURNING id'
-    values = [@name, @industry, @contact, @info]
+    sql = 'INSERT INTO companies (name, industry, contact, summary) VALUES ($1, $2, $3, $4) RETURNING id'
+    values = [@name, @industry, @contact, @summary]
     @id  = SqlRunner.run(sql, values).first['id'].to_i
   end
 
   def update()
-    sql = 'UPDATE companies SET (name, industry, contact, info) = ($1, $2, $3, $4) WHERE id = $5'
-    values = [@name, @industry, @contact, @info, @id]
+    sql = 'UPDATE companies SET (name, industry, contact, summary) = ($1, $2, $3, $4) WHERE id = $5'
+    values = [@name, @industry, @contact, @summary, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -59,7 +58,7 @@ class Company
     end
   end
 
-  def jobs()
+  def leads()
     sql = 'SELECT * FROM leads WHERE company_id = $1'
     values = [@id]
     result = SqlRunner.run(sql, values)
