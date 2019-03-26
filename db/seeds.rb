@@ -100,9 +100,32 @@ company5 = Company.new({
 })
 company5.save
 
+###SEED ACTIONS
+action1 = Action.new({
+  'status_id' => status2.id,
+  'due_date' => Date.today - 10,
+  'summary' => 'Sumbit resume and cover letter'
+  })
+action1.save
+
+action2 = Action.new({
+  'status_id' => status3.id,
+  'due_date' => Date.today + 3,
+  'summary' => 'Follow up email to application'
+  })
+action2.save
+
+action3 = Action.new({
+  'status_id' => status4.id,
+  'due_date' => Date.today + 15,
+  'summary' => 'First meeting / interview at 12:30pm at Starbucks'
+  })
+action3.save
+
 ##SEED LEADS
 lead1 = Lead.new({
   'company_id' => company1.id,
+  'action_id' => action1.id,
   'name' => 'UX Designer 1',
   'link' => 'www.bbc.co.uk',
   'summary' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod rutrum felis, ac facilisis nulla posuere commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed rhoncus mauris vel orci volutpat elementum. Sed ultricies diam convallis lorem tristique luctus. Curabitur venenatis, augue at ultricies dignissim, odio lorem accumsan sem, at luctus neque orci vitae odio. Proin orci risus, sollicitudin eu semper vitae, dictum sit amet diam. Quisque convallis vitae diam eu bibendum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
@@ -112,6 +135,7 @@ lead1.save
 
 lead2 = Lead.new({
   'company_id' => company3.id,
+  'action_id' => action2.id,
   'name' => 'Senior Product Designer',
   'link' => 'www.skyscanner.com',
   'summary' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod rutrum felis, ac facilisis nulla posuere commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed rhoncus mauris vel orci volutpat elementum. Sed ultricies diam convallis lorem tristique luctus. Curabitur venenatis, augue at ultricies dignissim, odio lorem accumsan sem, at luctus neque orci vitae odio. Proin orci risus, sollicitudin eu semper vitae, dictum sit amet diam. Quisque convallis vitae diam eu bibendum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
@@ -119,31 +143,12 @@ lead2 = Lead.new({
   })
 lead2.save
 
-###SEED ACTIONS
-action1 = Action.new({
-  'lead_id' => lead1.id,
-  'status_id' => status2.id,
-  'due_date' => Date.today - 10,
-  'summary' => 'Sumbit resume and cover letter',
-  'completed' => true
-
+lead3 = Lead.new({
+  'company_id' => company5.id,
+  'action_id' => action3.id,
+  'name' => 'Service Designer',
+  'link' => 'www.rbs.com',
+  'summary' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod rutrum felis, ac facilisis nulla posuere commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed rhoncus mauris vel orci volutpat elementum. Sed ultricies diam convallis lorem tristique luctus. Curabitur venenatis, augue at ultricies dignissim, odio lorem accumsan sem, at luctus neque orci vitae odio. Proin orci risus, sollicitudin eu semper vitae, dictum sit amet diam. Quisque convallis vitae diam eu bibendum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+  'comments' => 'include new media project in application portfolio'
   })
-action1.save
-
-action2 = Action.new({
-  'lead_id' => lead1.id,
-  'status_id' => status3.id,
-  'due_date' => Date.today + 3,
-  'summary' => 'Follow up email to application',
-  'completed' => false
-  })
-action2.save
-
-action3 = Action.new({
-  'lead_id' => lead2.id,
-  'status_id' => status4.id,
-  'due_date' => Date.today + 15,
-  'summary' => 'First meeting / interview at 12:30pm at Starbucks',
-  'completed' => false
-  })
-action3.save
+lead3.save
