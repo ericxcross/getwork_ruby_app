@@ -1,0 +1,22 @@
+<form action = "/lead" method="post">
+  <h2>Lead Details</h2>
+  
+  <label for = "name">Lead Name: </label>
+  <input type = "text" name = "name">
+
+  <label for = "company">Company: </label>
+  <input type = "text" id = "company" name = "company_name" list = "company_options">
+  <datalist id="company_options">
+    <%for company in @companies%>
+      <option value = "<%=company.name%>"></option>
+    <%end%>
+  </datalist>
+
+  <label for ="link">URL Link: </label>
+  <input type ="text" name="link>
+
+  <label for = "summary">Summary:</label>
+  <textarea name ="summary" rows="8" cols="80"></textarea>
+
+  <input type="submit" value= "Save Lead"/>
+</form>

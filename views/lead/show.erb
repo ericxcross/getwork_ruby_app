@@ -25,10 +25,7 @@
 
 <div>
   <div class="container">
-    <div>
-      <a href="/lead/new-action">New Action</a>
-    </div>
-
+    <h2>Actions</h2>
     <div class="item_1">
       <h2><%=@lead.action_status.name%></h2>
       <h3>Ongoing</h3>
@@ -55,10 +52,10 @@
       </select>
 
       <label for="due_date">Due Date</label>
-      <input type="date" name="due_date">
+      <input type="date" name="due_date" value="<%=Date.today%>">
 
       <label for = "summary">Summary: </label>
-      <textarea name ="summary" rows="8" cols="80"></textarea>
+      <textarea name ="summary" rows="4" cols="80"></textarea>
 
       <input type="submit" value= "New Action"/>
     </form>

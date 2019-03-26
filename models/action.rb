@@ -50,4 +50,12 @@ class Action
    return Lead.new(result)
   end
 
+  def self.default()
+    default_action = Status.new({
+      'status_id' => Status.default_id
+      })
+    default_action.save
+    return default_action.id
+  end
+
 end

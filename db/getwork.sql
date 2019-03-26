@@ -7,15 +7,6 @@ DROP TABLE IF EXISTS companies;
 
 SET TIME ZONE 'Europe/London';
 
--- EXTENSION ONLY
-CREATE TABLE companies (
-  id SERIAL4 PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  industry VARCHAR(255),
-  contact TEXT,
-  summary TEXT
-);
-
 -- MVP
 CREATE TABLE status (
   id SERIAL4 PRIMARY KEY,
@@ -32,7 +23,7 @@ CREATE TABLE actions (
 
 CREATE TABLE leads (
   id SERIAL4 PRIMARY KEY,
-  company_id INT4 REFERENCES companies(id) ON DELETE CASCADE,
+  company_name VARCHAR(255),
   action_id INT4 REFERENCES actions(id),
   last_updated DATE,
 

@@ -5,25 +5,25 @@ require_relative('../models/action.rb')
 
 ## SEED STATUSES
 
+Lead.delete_all
 Action.delete_all
 Status.delete_all
-Lead.delete_all
 Company.delete_all
 
 status1 = Status.new({
-  'name' => 'Wishlist',
+  'name' => 'Interested',
   'color' => 'purple'
 })
 status1.save
 
 status2 = Status.new({
-  'name' => 'Applied',
+  'name' => 'Apply',
   'color' => 'red'
 })
 status2.save
 
 status3 = Status.new({
-  'name' => 'First Contact',
+  'name' => 'Follow Up',
   'color' => 'orange'
 })
 status3.save
@@ -47,13 +47,13 @@ status6 = Status.new({
 status6.save
 
 status7 = Status.new({
-  'name' => 'Offer Rejected',
+  'name' => 'Offer Turned Down',
   'color' => 'grey'
 })
 status7.save
 
 status8 = Status.new({
-  'name' => 'No Offer',
+  'name' => 'Application Rejected',
   'color' => 'grey'
 })
 status8.save
@@ -152,3 +152,12 @@ lead3 = Lead.new({
   'comments' => 'include new media project in application portfolio'
   })
 lead3.save
+
+lead4 = Lead.new({
+  'company_id' => company5.id,
+  'name' => 'UX Designer',
+  'link' => 'www.rbs.com',
+  'summary' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod rutrum felis, ac facilisis nulla posuere commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed rhoncus mauris vel orci volutpat elementum. Sed ultricies diam convallis lorem tristique luctus. Curabitur venenatis, augue at ultricies dignissim, odio lorem accumsan sem, at luctus neque orci vitae odio. Proin orci risus, sollicitudin eu semper vitae, dictum sit amet diam. Quisque convallis vitae diam eu bibendum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+  'comments' => 'include new media project in application portfolio'
+  })
+lead4.save

@@ -30,18 +30,18 @@ get '/lead/sort-by-last-updated' do
   erb (:"/lead/index")
 end
 
-# get '/lead/new' do
-#   @companies = Company.all()
-#   @status_list = Status.all()
-#   erb(:"/lead/edit")
-# end
+get '/lead/new' do
+  @companies = Company.all()
+  @status_list = Status.all()
+  erb(:"/lead/new")
+end
 
-# get '/lead/:id/edit' do #Edit / New Lead
-#   @lead = Lead.find(params[:id])
-#   @companies = Company.all()
-#   @status_list = Status.all()
-#   erb(:"/lead/edit")
-# end
+get '/lead/:id/edit' do #Edit / New Lead
+  @lead = Lead.find(params[:id])
+  @companies = Company.all()
+  @status_list = Status.all()
+  erb(:"/lead/edit")
+end
 
 get '/lead/:id' do
   @lead = Lead.find(params[:id])
@@ -53,24 +53,24 @@ end
 post '/lead/:id/new-action' do
   action = Action.new(params)
   action.save
+  #find lead by ID
   lead = Lead.find(params[:id])
-  old_action_id = lead.action_id
+  #tag old action
+  old_action = lead.action
+  #overwrite old action ID with new action
   lead.action_id = action.id
-  old_action = Action.find(old_action_id)
-  old_action.delete
+  #update lead with new action
   lead.update
-
+  #delete old action (automatically added to action log)
+  old_action.delete
   redirect "/lead/#{params[:id]}"
 end
 
-# post '/lead/:id' do #EDIT or NEW
-#
-#   #check if company exists, return existing company or new company.
-#   params['company_id'] = Company.company_by_name(params['company_name'])
-#   #check if the the lead is being created or updated
-#   # binding.pry
-#   lead = Lead.new(params)
-#   lead.id == 0 ? lead.save : lead.update
-#
-#   redirect '/lead'
-# end
+post '/lead' do #NEW
+  lead = Lead.new(params)
+  params['status_id'] = Status.all.first.id
+
+  lead.save
+
+  redirect "/lead/#{lead.id}"
+end

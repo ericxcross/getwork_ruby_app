@@ -1,29 +1,20 @@
-<form action = "/lead/<%=@lead ? @lead.id : 0%>" method="post">
-
+<form action = "/lead/<%=@lead.id%>" method="post">
+  <h2>Lead Details</h2>
   <label for = "name">Lead Name: </label>
   <input type = "text" name = "name" value="<%=@lead.name if @lead%>">
 
   <label for = "company">Company: </label>
   <input type = "text" id = "company" name = "company_name" list = "company_options" value = "<%=@lead.company.name if @lead%>" >
-
   <datalist id="company_options">
     <%for company in @companies%>
       <option value = "<%=company.name%>"></option>
     <%end%>
   </datalist>
 
-  <label for = "status">Current Status: </label>
-  <select id="status" name="status_id">
-    <%for status in @status_list%>
-      <option value="<%=status.id%>" <%='selected' if @lead && @lead.status.id == status.id%>><%=status.name%></option>
-    <%end%>
-  </select>
-
   <label for ="link">URL Link: </label>
   <input type ="text" name="link" value="<%=@lead.link if @lead%>">
 
   <label for = "summary">Summary: </label>
   <textarea name ="summary" rows="8" cols="80"><%=@lead.summary if @lead%></textarea>
-
   <input type="submit" value= "Save Lead"/>
 </form>

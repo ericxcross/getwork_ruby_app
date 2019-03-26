@@ -6,7 +6,7 @@ require_relative('./status.rb')
 require('pry-byebug')
 
 class Lead
-  attr_accessor :company_id, :action_id, :last_updated, :name, :link, :summary
+  attr_accessor :action_id, :last_updated, :name, :company_name, :link, :summary
   attr_reader :id
 
   def initialize(options)
@@ -14,25 +14,26 @@ class Lead
 
     @last_updated = Date::strptime(options['last_updated'].to_s, "%Y-%m-%d") if options['last_updated']
 
-    @company_id = options['company_id'].to_i if options['company_id']
     @action_id = options['action_id'].to_i if options['action_id']
 
+    @company_name = options['company_name']
     @name = options['name']
     @link = options['link']
     @summary = options['summary']
   end
 
   def save()
+    @action_id = Action.default if @action_id == nil
     @last_updated = Date.today
-    sql = 'INSERT INTO leads (company_id, action_id, name, link, last_updated, summary) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id'
-    values = [@company_id, @action_id, @name, @link, @last_updated, @summary]
+    sql = 'INSERT INTO leads (company_name, action_id, name, link, last_updated, summary) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id'
+    values = [@company_name, @action_id, @name, @link, @last_updated, @summary]
     @id  = SqlRunner.run(sql, values).first['id'].to_i
   end
 
   def update()
     @last_updated = Date.today
-    sql = 'UPDATE leads SET (company_id, action_id, name, link, summary, last_updated) = ($1, $2, $3, $4, $5, $6) WHERE id = $7'
-    values = [@company_id, @action_id, @name, @link, @summary, @last_updated, @id]
+    sql = 'UPDATE leads SET (company_name, action_id, name, link, summary, last_updated) = ($1, $2, $3, $4, $5, $6) WHERE id = $7'
+    values = [@company_name, @action_id, @name, @link, @summary, @last_updated, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -84,13 +85,6 @@ class Lead
     return Lead.new(result)
   end
 
-  def company()
-    sql = 'SELECT * FROM companies WHERE id = $1'
-    values = [@company_id]
-    result = SqlRunner.run(sql, values).first
-   return Company.new(result)
-  end
-
   def action()
     sql = 'SELECT * FROM actions WHERE id = $1'
     values = [@action_id]
@@ -117,23 +111,6 @@ class Lead
     elsif date < Date.today
       return "<strong>Overdue: #{date.strftime("%B %d %Y")}</strong>"
     end
-  end
-
-  def long_ago()
-    return @last_updated.strftime("%B %d %Y")
-    # if time_passed.day > 1
-    #   return "over #{time_passed.day} days ago"
-    # elsif time_passed.day == 1
-    #   return "today"
-    # elsif time_passed.month > 1
-    #   return "over #{time_passed.month} months ago"
-    # elsif time_passed.month == 1
-    #   return "over 1 month ago"
-    # elsif time_passed.year > 1
-    #   return "over #{time_passed.year} years ago"
-    # elsif time_passed.year == 1
-    #   return "over 1 year ago"
-    # end
   end
 
 end

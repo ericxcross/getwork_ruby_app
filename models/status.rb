@@ -38,6 +38,12 @@ class Status
     return result.map{|hash| Status.new(hash)}
   end
 
+  def self.default_id()
+    sql = 'SELECT * FROM status WHERE id = (SELECT MIN(id) FROM status)'
+    result = SqlRunner.run(sql).first
+    return Status.new(result).id
+  end
+
   def jobs()
     sql = 'SELECT * FROM leads WHERE status_id = $1'
     values = [@id]
