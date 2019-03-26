@@ -22,7 +22,6 @@ class Lead
     @summary = options['summary']
   end
 
-
   def save()
     @last_updated = Date.today
     sql = 'INSERT INTO leads (company_id, action_id, name, link, last_updated, summary) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id'
@@ -48,17 +47,29 @@ class Lead
     SqlRunner.run(sql)
   end
 
-  def self.all() #returns leads in alphabetical order
+  def self.all_by_name() #returns leads in alphabetical order
     sql = 'SELECT * FROM leads ORDER BY name ASC'
     result = SqlRunner.run(sql)
     return result.map{|hash| Lead.new(hash)}
   end
 
-  # def self.all_by_last_updated() #returns leads in alphabetical order
-  #   sql = 'SELECT * FROM leads ORDER BY date ASC'
-  #   result = SqlRunner.run(sql)
-  #   return result.map{|hash| Lead.new(hash)}
-  # end
+  def self.all_by_due_date
+    sql = 'SELECT leads.* FROM leads INNER JOIN actions ON actions.id = leads.action_id ORDER BY actions.due_date ASC'
+    result = SqlRunner.run(sql)
+    return result.map{|hash| Lead.new(hash)}
+  end
+
+  def self.all_by_status
+    sql = 'SELECT leads.* FROM leads INNER JOIN actions ON actions.id = leads.action_id ORDER BY actions.status_id ASC, actions.due_date ASC'
+    result = SqlRunner.run(sql)
+    return result.map{|hash| Lead.new(hash)}
+  end
+
+  def self.all_by_update
+    sql = 'SELECT * FROM leads ORDER BY last_updated ASC, id ASC'
+    result = SqlRunner.run(sql)
+    return result.map{|hash| Lead.new(hash)}
+  end
 
   # def self.all_by_due_date() #returns leads in alphabetical order
   #   sql = 'SELECT * FROM leads ORDER BY name ASC'
@@ -103,8 +114,26 @@ class Lead
       return "Due Date: #{date.strftime("%B %d %Y")}"
     elsif date == Date.today
       return "Due Today"
-    else
-      return "<strong>Overdue: #{date.strftime("%a, %d %b %Y")}</strong>"
+    elsif date < Date.today
+      return "<strong>Overdue: #{date.strftime("%B %d %Y")}</strong>"
     end
   end
+
+  def long_ago()
+    return @last_updated.strftime("%B %d %Y")
+    # if time_passed.day > 1
+    #   return "over #{time_passed.day} days ago"
+    # elsif time_passed.day == 1
+    #   return "today"
+    # elsif time_passed.month > 1
+    #   return "over #{time_passed.month} months ago"
+    # elsif time_passed.month == 1
+    #   return "over 1 month ago"
+    # elsif time_passed.year > 1
+    #   return "over #{time_passed.year} years ago"
+    # elsif time_passed.year == 1
+    #   return "over 1 year ago"
+    # end
+  end
+
 end

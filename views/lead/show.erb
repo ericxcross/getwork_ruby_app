@@ -5,7 +5,8 @@
       <h2><%= @lead.name %></h2>
     </div>
     <div>
-      <h3>Status: <%= @lead.status.name %></h3>
+      <h3>Status: <%= @lead.action_status.name %></h3>
+      <p><%= @lead.action_date %>
     </div>
   </div>
 
@@ -18,17 +19,57 @@
       <a href="/lead/<%=@lead.id%>/edit">Edit</a>
     </div>
 
-    <h3>Notes</h3>
-    <p><%= @lead.comments %></p>
-
     <a href="/lead">Back to leads</a>
   </div>
 </div>
 
 <div>
+  <div class="container">
+    <div>
+      <a href="/lead/new-action">New Action</a>
+    </div>
+
+    <div class="item_1">
+      <h2><%=@lead.action_status.name%></h2>
+      <h3>Ongoing</h3>
+    </div>
+
+    <div class="item_2">
+      <p><%=@lead.action.summary%></p>
+    </div>
+
+    <div class="item_3">
+      <h3>Due:</h3>
+      <h3><%=@lead.action_date%></h3>
+    </div>
+  </div>
+
+  <div class="container">
+    <form action = "/lead/<%=@lead.id%>/new-action" method="post">
+
+      <label for="action_status">Status</label>
+      <select id="status" name="status_id">
+        <%for status in @status_list%>
+          <option value="<%=status.id%>" <%='selected' if @lead && @lead.action.status_id == (status.id - 1)%>><%=status.name%></option>
+        <%end%>
+      </select>
+
+      <label for="due_date">Due Date</label>
+      <input type="date" name="due_date">
+
+      <label for = "summary">Summary: </label>
+      <textarea name ="summary" rows="8" cols="80"></textarea>
+
+      <input type="submit" value= "New Action"/>
+    </form>
+  </div>
+</div>
+
+
+<div>
   <h2><%= @company.name %></h2>
   <h3><%= @company.industry%></h3>
-  <p><%= @company.info %></p>
+  <p><%= @company.summary %></p>
 
   <a href="/companies">Back to companies</a>
 </div>

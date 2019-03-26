@@ -2,10 +2,10 @@
 
 <ul class = "sort">
   <h1>Sort By:</h1>
-  <li><a href="/lead/action_date">due date</a></li>
-  <li><a href="/lead/status">status</a></li>
-  <li><a href="/lead">alphabetical</a></li>
-  <li><a href="/lead/last_updated">last added</a></li>
+  <li><a href="/lead">due date</a></li>
+  <li><a href="/lead/sort-by-status">status</a></li>
+  <li><a href="/lead/sort-by-name">alphabetical</a></li>
+  <li><a href="/lead/sort-by-last-updated">most recent</a></li>
 </ul>
 
 <div class="lead_list">
@@ -15,6 +15,7 @@
         <div class="item_1">
           <h2><%= lead.company.name %></h2>
           <h3><%= lead.name %></h3>
+          <p>Last updated on: <%= lead.long_ago %></p>
         </div>
         <div class="item_2">
           <p><%= lead.summary[0,255] %><%=p '...' if lead.summary.length > 255%></p>
