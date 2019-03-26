@@ -3,15 +3,17 @@ require_relative('./company.rb')
 require_relative('./status.rb')
 
 class Lead
-  attr_accessor :company_id, :status_id, :name, :date_added, :link, :summary, :comments
+  attr_accessor :company_id, :status_id, :date_added, :last_updated, :name, :link, :summary, :comments
   attr_reader :id
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @company_id = options['company_id'].to_i if options['company_id']
-    @status_id = options['status_id'].to_i if options['status_id']
-    @name = options['name']
+    @action_id = options['action_id'].to_i if options['action_id']
     @date_added = options['date_added'] if options['date_added']
+    @last_updated = options['last_updated'] if options['last_updated']
+
+    @name = options['name']
     @link = options['link']
     @summary = options['summary']
     @comments = options['comments']
@@ -42,7 +44,19 @@ class Lead
   end
 
   def self.all() #returns leads in alphabetical order
+    sql = 'SELECT * FROM leads ORDER BY status_id DESC, name ASC'
+    result = SqlRunner.run(sql)
+    return result.map{|hash| Lead.new(hash)}
+  end
+
+  def self.all_by_letter() #returns leads in alphabetical order
     sql = 'SELECT * FROM leads ORDER BY name ASC'
+    result = SqlRunner.run(sql)
+    return result.map{|hash| Lead.new(hash)}
+  end
+
+  def self.all_by_last_updated() #returns leads in alphabetical order
+    sql = 'SELECT * FROM leads ORDER BY date ASC'
     result = SqlRunner.run(sql)
     return result.map{|hash| Lead.new(hash)}
   end
