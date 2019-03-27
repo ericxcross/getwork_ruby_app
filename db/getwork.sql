@@ -2,8 +2,6 @@ DROP TABLE IF EXISTS actions_log;
 DROP TABLE IF EXISTS leads;
 DROP TABLE IF EXISTS actions;
 DROP TABLE IF EXISTS status;
-DROP TABLE IF EXISTS companies;
-
 
 SET TIME ZONE 'Europe/London';
 
@@ -35,7 +33,7 @@ CREATE TABLE leads (
 CREATE TABLE actions_log (
   id SERIAL4 PRIMARY KEY,
   status_id INT4 REFERENCES status(id),
-  leads_id INT4 REFERENCES leads(id),
+  lead_id INT4 REFERENCES leads(id),
   date_completed DATE,
   summary TEXT
 );

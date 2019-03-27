@@ -1,7 +1,7 @@
 <div>
   <div class="container">
     <div>
-      <h1><%= @company.name %></h1>
+      <h1><%= @lead.company_name %></h1>
       <h2><%= @lead.name %></h2>
     </div>
     <div>
@@ -26,19 +26,45 @@
 <div>
   <div class="container">
     <h2>Actions</h2>
-    <div class="item_1">
-      <h2><%=@lead.action_status.name%></h2>
-      <h3>Ongoing</h3>
+    <div>
+      <div class="item_1">
+        <h2><%=@lead.action_status.name%></h2>
+        <h3><%=@lead.action.word_date%></h3>
+      </div>
+
+      <div class="item_2">
+        <p><%=@lead.action.summary%></p>
+      </div>
+
+      <div class="item_3">
+        <form action="/lead/action/<%=@lead.action.id%>" method="post">
+          <input type = 'hidden' name = 'id' value = <%=@lead.id%>>
+          <input type="submit" value= "Delete"/>
+        </form>
+      </div>
     </div>
 
-    <div class="item_2">
-      <p><%=@lead.action.summary%></p>
-    </div>
+    <%for action in @action_log%>
+      <div>
+        <div class="item_1">
+          <h2><%=action.status.name%></h2>
+          <input type = 'hidden' name = 'id' value = <%=@lead.id%>>
+          <h3>Completed: <%=action.word_date%></h3>
+        </div>
 
-    <div class="item_3">
-      <h3>Due:</h3>
-      <h3><%=@lead.action_date%></h3>
-    </div>
+        <div class="item_2">
+          <p><%=action.summary%></p>
+        </div>
+
+        <div class="item_3">
+          <form action="/lead/action-log/<%=action.id%>" method="post">
+            <input type = 'hidden' name = 'id' value = <%=@lead.id%>>
+            <input type="submit" value= "Delete"/>
+          </form>
+        </div>
+      </div>
+    <%end%>
+
   </div>
 
   <div class="container">
@@ -51,8 +77,8 @@
         <%end%>
       </select>
 
-      <label for="due_date">Due Date</label>
-      <input type="date" name="due_date" value="<%=Date.today%>">
+      <label for="due_date">Due</label>
+      <input type="date" name="due_date">
 
       <label for = "summary">Summary: </label>
       <textarea name ="summary" rows="4" cols="80"></textarea>
@@ -60,13 +86,4 @@
       <input type="submit" value= "New Action"/>
     </form>
   </div>
-</div>
-
-
-<div>
-  <h2><%= @company.name %></h2>
-  <h3><%= @company.industry%></h3>
-  <p><%= @company.summary %></p>
-
-  <a href="/companies">Back to companies</a>
 </div>

@@ -13,9 +13,9 @@
     <a href = "/lead/<%=lead.id%>" class="container">
       <div>
         <div class="item_1">
-          <h2><%= lead.company.name %></h2>
+          <h2><%= lead.company_name %></h2>
           <h3><%= lead.name %></h3>
-          <p>Last updated on: <%= lead.long_ago %></p>
+          <p>tast updated on <%= lead.word_date %></p>
         </div>
         <div class="item_2">
           <p><%= lead.summary[0,255] %><%=p '...' if lead.summary.length > 255%></p>

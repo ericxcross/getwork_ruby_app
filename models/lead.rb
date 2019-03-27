@@ -1,5 +1,4 @@
 require_relative('../db/sql_runner.rb')
-require_relative('./company.rb')
 require_relative('./action.rb')
 require_relative('./status.rb')
 
@@ -49,7 +48,7 @@ class Lead
   end
 
   def self.all_by_name() #returns leads in alphabetical order
-    sql = 'SELECT * FROM leads ORDER BY name ASC'
+    sql = 'SELECT * FROM leads ORDER BY name DESC'
     result = SqlRunner.run(sql)
     return result.map{|hash| Lead.new(hash)}
   end
@@ -71,12 +70,6 @@ class Lead
     result = SqlRunner.run(sql)
     return result.map{|hash| Lead.new(hash)}
   end
-
-  # def self.all_by_due_date() #returns leads in alphabetical order
-  #   sql = 'SELECT * FROM leads ORDER BY name ASC'
-  #   result = SqlRunner.run(sql)
-  #   return result.map{|hash| Lead.new(hash)}
-  # end
 
   def self.find(id)
     sql = 'SELECT * FROM leads WHERE id = $1'
@@ -104,13 +97,28 @@ class Lead
     values = [@action_id]
     result = SqlRunner.run(sql, values).first
     date = Action.new(result).due_date
-    if date > Date.today
-      return "Due Date: #{date.strftime("%B %d %Y")}"
-    elsif date == Date.today
-      return "Due Today"
-    elsif date < Date.today
-      return "<strong>Overdue: #{date.strftime("%B %d %Y")}</strong>"
+    if date != nil
+      if date > Date.today
+        return "Due: #{date.strftime("%B %d %Y")}"
+      elsif date == Date.today
+        return "Due Today"
+      elsif date < Date.today
+        return "<strong>Overdue: #{date.strftime("%B %d %Y")}</strong>"
+      end
     end
+    return
+  end
+
+  def action_log()
+    sql = 'SELECT * FROM actions_log WHERE lead_id = $1'
+    values = [@id]
+    result = SqlRunner.run(sql, values)
+    return result.map{|hash| ActionLog.new(hash)}
+  end
+
+  def word_date()
+    date = self.last_updated
+    return date.strftime("%B %d, %Y")
   end
 
 end

@@ -4,17 +4,20 @@
   <input type = "text" name = "name" value="<%=@lead.name if @lead%>">
 
   <label for = "company">Company: </label>
-  <input type = "text" id = "company" name = "company_name" list = "company_options" value = "<%=@lead.company.name if @lead%>" >
-  <datalist id="company_options">
-    <%for company in @companies%>
-      <option value = "<%=company.name%>"></option>
-    <%end%>
-  </datalist>
+  <input type = "text" name = "company_name" value = "<%=@lead.company_name if @lead%>" >
 
   <label for ="link">URL Link: </label>
   <input type ="text" name="link" value="<%=@lead.link if @lead%>">
 
   <label for = "summary">Summary: </label>
   <textarea name ="summary" rows="8" cols="80"><%=@lead.summary if @lead%></textarea>
-  <input type="submit" value= "Save Lead"/>
+
+  <input type = 'hidden' name = 'action_id' value = <%=@lead.action_id%>>
+
+  <input type="submit" value= "Save"/>
+
+  <input type="submit" formaction="/lead/<%=@lead.id%>/cancel" value= "Cancel"/>
+
+  <input type="submit" formaction="/lead/<%=@lead.id%>/delete" value= "Delete"/>
+
 </form>

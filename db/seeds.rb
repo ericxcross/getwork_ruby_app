@@ -1,5 +1,4 @@
 require_relative('../models/status.rb')
-require_relative('../models/company.rb')
 require_relative('../models/lead.rb')
 require_relative('../models/action.rb')
 
@@ -8,11 +7,10 @@ require_relative('../models/action.rb')
 Lead.delete_all
 Action.delete_all
 Status.delete_all
-Company.delete_all
 
 status1 = Status.new({
   'name' => 'Interested',
-  'color' => 'purple'
+  'color' => 'grey'
 })
 status1.save
 
@@ -58,47 +56,17 @@ status8 = Status.new({
 })
 status8.save
 
-##SEED COMPANIES
-
-company1 = Company.new({
-  'name' => 'BBC',
-  'industry' => 'Broadcasting',
-  'contact' => '40 Pacific Quay, Glasgow',
-  'summary' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod rutrum felis, ac facilisis nulla posuere commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed rhoncus mauris vel orci volutpat elementum. Sed ultricies diam convallis lorem tristique luctus. Curabitur venenatis, augue at ultricies dignissim, odio lorem accumsan sem, at luctus neque orci vitae odio. Proin orci risus, sollicitudin eu semper vitae, dictum sit amet diam. Quisque convallis vitae diam eu bibendum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.'
+status9 = Status.new({
+  'name' => 'Note',
+  'color' => 'grey'
 })
-company1.save
+status9.save
 
-company2 = Company.new({
-  'name' => 'NHS Lothian',
-  'industry' => 'Healthcare',
-  'contact' => '2-4 Waterloo Pl, Edinburgh',
-  'summary' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod rutrum felis, ac facilisis nulla posuere commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed rhoncus mauris vel orci volutpat elementum. Sed ultricies diam convallis lorem tristique luctus. Curabitur venenatis, augue at ultricies dignissim, odio lorem accumsan sem, at luctus neque orci vitae odio. Proin orci risus, sollicitudin eu semper vitae, dictum sit amet diam. Quisque convallis vitae diam eu bibendum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.'
+status0 = Status.new({
+  'name' => 'None',
+  'color' => 'grey'
 })
-company2.save
-
-company3 = Company.new({
-  'name' => 'Skyscanner',
-  'industry' => 'Tech',
-  'contact' => '15 Lauriston Pl, Edinburgh',
-  'summary' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod rutrum felis, ac facilisis nulla posuere commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed rhoncus mauris vel orci volutpat elementum. Sed ultricies diam convallis lorem tristique luctus. Curabitur venenatis, augue at ultricies dignissim, odio lorem accumsan sem, at luctus neque orci vitae odio. Proin orci risus, sollicitudin eu semper vitae, dictum sit amet diam. Quisque convallis vitae diam eu bibendum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.'
-})
-company3.save
-
-company4 = Company.new({
-  'name' => 'Codeclan',
-  'industry' => 'Education',
-  'contact' => '37 Castle Terrace, Edinburgh',
-  'summary' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod rutrum felis, ac facilisis nulla posuere commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed rhoncus mauris vel orci volutpat elementum. Sed ultricies diam convallis lorem tristique luctus. Curabitur venenatis, augue at ultricies dignissim, odio lorem accumsan sem, at luctus neque orci vitae odio. Proin orci risus, sollicitudin eu semper vitae, dictum sit amet diam. Quisque convallis vitae diam eu bibendum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.'
-})
-company4.save
-
-company5 = Company.new({
-  'name' => 'RBS',
-  'industry' => 'Banking',
-  'contact' => '36 St Andrew Square, Edinburgh',
-  'summary' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod rutrum felis, ac facilisis nulla posuere commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed rhoncus mauris vel orci volutpat elementum. Sed ultricies diam convallis lorem tristique luctus. Curabitur venenatis, augue at ultricies dignissim, odio lorem accumsan sem, at luctus neque orci vitae odio. Proin orci risus, sollicitudin eu semper vitae, dictum sit amet diam. Quisque convallis vitae diam eu bibendum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.'
-})
-company5.save
+status0.save
 
 ###SEED ACTIONS
 action1 = Action.new({
@@ -124,7 +92,7 @@ action3.save
 
 ##SEED LEADS
 lead1 = Lead.new({
-  'company_id' => company1.id,
+  'company_name' => 'BBC',
   'action_id' => action1.id,
   'name' => 'UX Designer 1',
   'link' => 'www.bbc.co.uk',
@@ -134,7 +102,7 @@ lead1 = Lead.new({
 lead1.save
 
 lead2 = Lead.new({
-  'company_id' => company3.id,
+  'company_name' => 'Skyscanner',
   'action_id' => action2.id,
   'name' => 'Senior Product Designer',
   'link' => 'www.skyscanner.com',
@@ -144,7 +112,7 @@ lead2 = Lead.new({
 lead2.save
 
 lead3 = Lead.new({
-  'company_id' => company5.id,
+  'company_name' => 'RBS',
   'action_id' => action3.id,
   'name' => 'Service Designer',
   'link' => 'www.rbs.com',
@@ -154,7 +122,7 @@ lead3 = Lead.new({
 lead3.save
 
 lead4 = Lead.new({
-  'company_id' => company5.id,
+  'company_name' => 'RBS',
   'name' => 'UX Designer',
   'link' => 'www.rbs.com',
   'summary' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod rutrum felis, ac facilisis nulla posuere commodo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed rhoncus mauris vel orci volutpat elementum. Sed ultricies diam convallis lorem tristique luctus. Curabitur venenatis, augue at ultricies dignissim, odio lorem accumsan sem, at luctus neque orci vitae odio. Proin orci risus, sollicitudin eu semper vitae, dictum sit amet diam. Quisque convallis vitae diam eu bibendum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
