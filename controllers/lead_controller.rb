@@ -14,21 +14,21 @@ get '/lead' do
   # return "banana"
   erb (:"/lead/index")
 end
-#
-# get '/lead/sort-by-status' do
-#   @leads = Lead.all_by_status()
-#   erb (:"/lead/index")
-# end
-#
-# get '/lead/sort-by-name' do
-#   @leads = Lead.all_by_name()
-#   erb (:"/lead/index")
-# end
 
-# get '/lead/sort-by-last-updated' do
-#   @leads = Lead.all_by_update
-#   erb (:"/lead/index")
-# end
+get '/lead/sort-by-status' do
+  @leads = Lead.all_by_status()
+  erb (:"/lead/index")
+end
+
+get '/lead/sort-by-name' do
+  @leads = Lead.all_by_name()
+  erb (:"/lead/index")
+end
+
+get '/lead/sort-by-action-date' do
+  @leads = Lead.all_by_action_date
+  erb (:"/lead/index")
+end
 
 #CREATE, EDIT
 get '/lead/new' do

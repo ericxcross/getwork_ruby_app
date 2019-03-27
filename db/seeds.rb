@@ -9,74 +9,88 @@ Action.delete_all
 Status.delete_all
 
 status1 = Status.new({
-  'name' => 'Interested',
+  'name' => 'No Current Tasks',
   'color' => 'grey',
   'archive' => false
 })
 status1.save
 
 status2 = Status.new({
-  'name' => 'Submit Application',
-  'color' => 'red',
+  'name' => 'Interested',
+  'color' => 'grey',
   'archive' => false
 })
 status2.save
 
 status3 = Status.new({
-  'name' => 'Follow Up',
-  'color' => 'orange',
+  'name' => 'Submit Application',
+  'color' => 'red',
   'archive' => false
 })
 status3.save
 
 status4 = Status.new({
-  'name' => 'Interview',
-  'color' => 'yellow',
+  'name' => 'Reply Pending',
+  'color' => 'red',
   'archive' => false
 })
 status4.save
 
 status5 = Status.new({
-  'name' => 'Offer Received',
-  'color' => 'green',
+  'name' => 'Follow Up',
+  'color' => 'orange',
   'archive' => false
 })
 status5.save
 
 status6 = Status.new({
-  'name' => 'Offer Accepted',
-  'color' => 'blue',
-  'archive' => true
+  'name' => 'Interview',
+  'color' => 'yellow',
+  'archive' => false
 })
 status6.save
 
 status7 = Status.new({
-  'name' => 'Offer Turned Down',
-  'color' => 'grey',
-  'archive' => true
+  'name' => 'Offer Received',
+  'color' => 'green',
+  'archive' => false
 })
 status7.save
 
 status8 = Status.new({
-  'name' => 'Application Rejected',
-  'color' => 'grey',
+  'name' => 'Offer Accepted',
+  'color' => 'blue',
   'archive' => true
 })
 status8.save
 
 status9 = Status.new({
+  'name' => 'Offer Turned Down',
+  'color' => 'grey',
+  'archive' => true
+})
+status9.save
+
+status10 = Status.new({
+  'name' => 'Application Rejected',
+  'color' => 'grey',
+  'archive' => true
+})
+status10.save
+
+status11 = Status.new({
   'name' => 'Note',
   'color' => 'grey',
   'archive' => false
 })
-status9.save
+status11.save
 
-status0 = Status.new({
+status12 = Status.new({
   'name' => 'No Current Tasks',
   'color' => 'grey',
   'archive' => false
 })
-status0.save
+status12.save
 
 ##SEED LEADS
 lead1 = Lead.new({

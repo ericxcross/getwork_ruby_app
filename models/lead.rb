@@ -45,28 +45,46 @@ class Lead
     SqlRunner.run(sql)
   end
 
+  def self.all_by_status
+    sql = 'SELECT leads.* FROM leads'
+    result = SqlRunner.run(sql)
+    leads_list = result.map{|hash| Lead.new(hash)}
+    order = []
+    for lead in leads_list
+      key = [lead, lead.primary_action.status_id]
+      order << key
+    end
+    sorted_leads = order.sort_by{|a,b| b}
+    return sorted_leads.map{|element| element[0]}
+  end
+
   def self.all_by_name() #returns leads in alphabetical order
-    sql = 'SELECT * FROM leads ORDER BY name DESC'
+    sql = 'SELECT leads.* FROM leads ORDER BY name DESC'
     result = SqlRunner.run(sql)
     return result.map{|hash| Lead.new(hash)}
   end
 
-  # def self.all_by_due_date
-  #   sql = 'SELECT * FROM leads'
-  #   result = SqlRunner.run(sql)
-  #   leads = result.map{|hash| Lead.new(hash)}
-  #   sorted_leads = leads.sort_by{|lead| lead.primary_action.date_completed}
-  #   return sorted_leads
-  # end
-
-  def self.all_by_status
-    sql = 'SELECT leads.* FROM leads INNER JOIN actions ON actions.id = leads.action_id ORDER BY actions.status_id ASC, actions.due_date ASC'
+  def self.all_by_action_date
+    sql = 'SELECT leads.* FROM leads'
     result = SqlRunner.run(sql)
-    return result.map{|hash| Lead.new(hash)}
+    leads_list = result.map{|hash| Lead.new(hash)}
+    order = []
+    for lead in leads_list
+      date = lead.primary_action.date_completed
+      if date != nil
+        converted_date = DateTime.parse(date)
+      else
+        converted_date = DateTime.new(2100)
+      end
+      key = [lead, converted_date]
+      order << key
+    end
+    sorted_leads = order.sort_by{|a,b| b}
+    return sorted_leads.map{|element| element[0]}
   end
 
   def self.all_by_update
-    sql = 'SELECT * FROM leads ORDER BY last_updated ASC, id ASC'
+    sql = 'SELECT leads.* FROM leads ORDER BY last_updated DESC'
     result = SqlRunner.run(sql)
     return result.map{|hash| Lead.new(hash)}
   end
@@ -89,13 +107,17 @@ class Lead
     actions = actions()
     first_action = actions.last
     #return default if no actions exist or most recent action is completed
-    if first_action == nil || first_action.completed == 't'
+    if first_action == nil
       first_action = Action.new({
-        "status_id" => Status.default_id,
+        "status_id" => Status.no_actions,
+        "lead_id" => @id
+        })
+    elsif first_action.completed == 't'
+      first_action = Action.new({
+        "status_id" => Status.all_actions_completed,
         "lead_id" => @id
         })
     end
-    # end
      #return first action
     return first_action
   end

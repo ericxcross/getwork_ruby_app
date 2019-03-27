@@ -39,8 +39,14 @@ class Status
     return result.map{|hash| Status.new(hash)}
   end
 
-  def self.default_id()
-    sql = 'SELECT * FROM status WHERE id = (SELECT MAX(id) FROM status)'
+  def self.no_actions()
+    sql = 'SELECT * FROM status ORDER BY id ASC OFFSET 1 LIMIT 1'
+    result = SqlRunner.run(sql).first
+    return Status.new(result).id
+  end
+
+  def self.all_actions_completed()
+    sql = 'SELECT * FROM status ORDER BY id ASC LIMIT 1'
     result = SqlRunner.run(sql).first
     return Status.new(result).id
   end
