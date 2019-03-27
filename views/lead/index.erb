@@ -15,7 +15,7 @@
         <div class="item_1">
           <h2><%= lead.company_name %></h2>
           <h3><%= lead.name %></h3>
-          <p>tast updated on <%= lead.word_date %></p>
+          <p>last updated on <%= lead.word_date %></p>
         </div>
         <div class="item_2">
           <p><%= lead.summary[0,255] %><%=p '...' if lead.summary.length > 255%></p>
