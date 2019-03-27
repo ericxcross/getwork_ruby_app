@@ -1,11 +1,10 @@
 <a href="/lead/new">Add New Lead</a>
 
 <ul class = "sort">
-  <h1>Sort By:</h1>
+  <h1>sort by:</h1>
   <li><a href="/lead">due date</a></li>
   <li><a href="/lead/sort-by-status">status</a></li>
   <li><a href="/lead/sort-by-name">alphabetical</a></li>
-  <li><a href="/lead/sort-by-last-updated">most recent</a></li>
 </ul>
 
 <div class="lead_list">
@@ -21,8 +20,8 @@
           <p><%= lead.summary[0,255] %><%=p '...' if lead.summary.length > 255%></p>
         </div>
         <div class="item_3">
-          <h3><%= lead.action_status.name %></h3>
-          <p><%= lead.action_date %>
+          <h3><%= lead.primary_action.status.name%></h3>
+          <p><%= lead.primary_action.word_date%></p>
         </div>
       </div>
     </a>

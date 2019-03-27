@@ -12,8 +12,6 @@
   <label for = "summary">Summary: </label>
   <textarea name ="summary" rows="8" cols="80"><%=@lead.summary if @lead%></textarea>
 
-  <input type = 'hidden' name = 'action_id' value = <%=@lead.action_id%>>
-
   <input type="submit" value= "Save"/>
 
   <input type="submit" formaction="/lead/<%=@lead.id%>/cancel" value= "Cancel"/>

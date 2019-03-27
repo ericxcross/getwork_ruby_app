@@ -1,0 +1,35 @@
+<div class="container">
+  <div>
+    <h1><%= @lead.company_name %></h1>
+    <h2><%= @lead.name %></h2>
+  </div>
+</div>
+
+<form action = "/action/<%=@action.id%>" method="post">
+
+  <label for="action_status">Status</label>
+  <select id="status" name="status_id">
+    <%for status in @status_list%>
+      <option value="<%=status.id%>" <%='selected' if @action.status.id == (status.id - 1)%>><%=status.name%></option>
+    <%end%>
+  </select>
+
+  <label for="date_completed">Action Date</label>
+  <input type="date" name="date_completed" value=<%=@action.date_completed%>>
+
+  <label for = "summary">Summary: </label>
+  <textarea name ="summary" rows="4" cols="80"><%=@action.summary%></textarea>
+
+  <label for="completed">Completed: </label>
+  <input type="checkbox" name="completed" value="true" <%='checked' if @action.completed == 't'%>>
+
+  <input type="hidden" name="id" value=<%=@action.id%>>
+  <input type="hidden" name="lead_id" value=<%=@action.lead_id%>>
+
+  <input type="submit" formaction ="/action/<%=@action.id%>" value= "Save"/>
+
+  <input type="submit" formaction ="/lead/<%=@lead.id%>/cancel" value= "Cancel"/>
+
+  <input type="submit" formaction="/action/<%=@action.id%>/delete" value= "Delete"/>
+
+</form>

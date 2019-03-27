@@ -1,23 +1,24 @@
 require_relative('../db/sql_runner.rb')
 
 class Status
-  attr_reader :name, :color, :id
+  attr_reader :name, :color, :id, :archive
 
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @name = options['name']
     @color = options['color']
+    @archive = options['archive']
   end
 
   def save()
-    sql = 'INSERT INTO status (name, color) VALUES ($1, $2) RETURNING id'
-    values = [@name, @color]
+    sql = 'INSERT INTO status (name, color, archive) VALUES ($1, $2, $3) RETURNING id'
+    values = [@name, @color, @archive]
     @id  = SqlRunner.run(sql, values).first['id'].to_i
   end
 
   def update()
-    sql = 'UPDATE status SET (name, color) = ($1, $2) WHERE id = $3'
-    values = [@name, @color, @id]
+    sql = 'UPDATE status SET (name, color, archive) = ($1, $2, $3) WHERE id = $4'
+    values = [@name, @color, @archive, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -39,15 +40,8 @@ class Status
   end
 
   def self.default_id()
-    sql = 'SELECT * FROM status WHERE id = (SELECT MIN(id) FROM status)'
+    sql = 'SELECT * FROM status WHERE id = (SELECT MAX(id) FROM status)'
     result = SqlRunner.run(sql).first
     return Status.new(result).id
-  end
-
-  def jobs()
-    sql = 'SELECT * FROM leads WHERE status_id = $1'
-    values = [@id]
-    result = SqlRunner.run(sql, values)
-    return result.map{|hash| Status.new(hash)}
   end
 end
