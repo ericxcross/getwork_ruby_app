@@ -22,7 +22,7 @@ a:hover {
   transition: 0.3s;
 }
 
-.navstyle {
+.buttonstyle {
   font-family: "Rubik";
   font-weight: 500;
   font-size: 1em;
@@ -134,12 +134,14 @@ h2 {
   font-family: "Rubik";
   font-weight: 500;
   font-size: 2em;
+  line-height: 0.5em;
 }
 
 h3 {
   font-family: "Roboto";
   font-weight: 400;
-  font-size: 1.2em
+  font-size: 1.2em;
+  line-height: 1.2em;
 }
 
 p {
@@ -196,4 +198,73 @@ footer .nav {
 
 footer .nav a {
   margin: 36px;
+}
+
+.button {
+  display: block;
+  margin: auto;
+  text-align: center;
+  background: #65FF98;
+  width: 300px;
+  padding: 12px;
+  margin-top: 24px;
+  margin-bottom: 36px;
+}
+
+.button .buttonstyle {
+  padding: 12px;
+}
+
+.sort {
+  border-bottom: 1px solid #E5E5E5;
+  padding-bottom: 6px;
+}
+.sort li {
+  display: inline-block;
+  padding-right: 1em;
+  padding-left: 1em;
+  font-family: "Roboto";
+  font-weight: 300;
+  font-size: 0.9em;
+}
+
+.lead {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+
+  border-bottom: 1px solid #E5E5E5;
+  width: 100%;
+}
+
+.lead > * {
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+.lead:hover {
+  background: #E5E5E5;
+  transition: 0.3s;
+}
+
+.item_1 {
+}
+
+.item_2 {
+
+}
+
+.item_3 {
+}
+
+@media all and (min-width: 900px) {
+  .item_2 { flex: 2 0px; }
+
+  .item_1 { order: 1; }
+  .item_2   { order: 2; }
+  .item_3 { order: 3; }
+}
+
+@media all and (min-width: 600px) {
+  .aside { flex: 1 auto; }
 }

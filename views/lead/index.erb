@@ -10,10 +10,10 @@
 <div class="backdrop">
 <div class="content">
 
-<a href="/lead/new">Add New Lead</a>
+<a href="/lead/new" class="button buttonstyle">Add New Lead</a>
 
 <ul class = "sort">
-  <h1>sort by:</h1>
+  <li>sort by:</li>
   <li><a href="/lead">last updated</a></li>
   <li><a href="/lead/sort-by-status">status</a></li>
   <li><a href="/lead/sort-by-name">alphabetical</a></li>
@@ -23,20 +23,22 @@
 <div class="lead_list">
   <%for lead in @leads%>
     <a href = "/lead/<%=lead.id%>">
-      <div>
+    <div class="lead">
         <div class="item_1">
           <h2><%= lead.company_name %></h2>
           <h3><%= lead.name %></h3>
           <p>last updated on <%= lead.word_date %></p>
         </div>
         <div class="item_2">
+          <span>
           <p><%= lead.summary[0,255] %><%=p '...' if lead.summary.length > 255%></p>
+          </span>
         </div>
         <div class="item_3">
           <h3><%= lead.primary_action.status.name%></h3>
           <p><%= lead.primary_action.word_date%></p>
         </div>
-      </div>
+    </div>
     </a>
   <%end%>
 </div>
