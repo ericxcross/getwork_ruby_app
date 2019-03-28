@@ -9,3 +9,7 @@ also_reload('./models/*')
 get '/' do
   erb( :index )
 end
+
+get '/settings' do
+  erb (:"/settings")
+end

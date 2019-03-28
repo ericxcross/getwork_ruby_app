@@ -8,7 +8,7 @@
       <h2><%= @lead.company_name %></h2>
     </div>
     <a><div class= "button  <%=@lead.primary_action.status.color%>">
-      <h2 class="buttonstyle underline"><%= @lead.primary_action.status.name %></h2>
+      <h2 class="buttonstyle <%='underline' if @primary_action.word_date%>"><%= @lead.primary_action.status.name %></h2>
       <p><%= @lead.primary_action.word_date %></p>
     </div></a>
   </div>

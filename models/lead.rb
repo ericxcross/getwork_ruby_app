@@ -112,7 +112,7 @@ class Lead
         "status_id" => Status.no_actions,
         "lead_id" => @id
         })
-      end
+    end
      #return first action
     return first_action
   end

@@ -1,21 +1,31 @@
-<form action = "/lead/<%=@lead.id%>" method="post">
-  <h2>Lead Details</h2>
-  <label for = "name">Lead Name: </label>
+<div class="container">
+<div class="backdrop">
+<div class="content">
+
+<h1>Edit Lead, Get Work</h1>
+
+<form class="action_form"  method="post">
+
+  <h2>Lead</h2>
   <input type = "text" name = "name" value="<%=@lead.name if @lead%>">
 
-  <label for = "company">Company: </label>
+  <h3>Company</h3>
   <input type = "text" name = "company_name" value = "<%=@lead.company_name if @lead%>" >
 
-  <label for ="link">URL Link: </label>
-  <input type ="text" name="link" value="<%=@lead.link if @lead%>">
-
-  <label for = "summary">Summary: </label>
+  <h2>Summary</h2>
   <textarea name ="summary" rows="8" cols="80"><%=@lead.summary if @lead%></textarea>
 
-  <input type="submit" value= "Save"/>
+  <h3>URL Link</h3>
+  <input type ="text" name="link" value="<%=@lead.link if @lead%>">
 
-  <input type="submit" formaction="/lead/<%=@lead.id%>/cancel" value= "Cancel"/>
+  <input type="submit" formaction="/lead/<%=@lead.id%>" value= "Save Lead" class="mint buttonstyle spacing"/>
 
-  <input type="submit" formaction="/lead/<%=@lead.id%>/delete" value= "Delete"/>
+  <input type="submit" formaction ="/lead/<%=@lead.id%>/cancel" value= "Cancel" class="grey buttonstyle"/>
+
+  <input type="submit" formaction="/lead/<%=@lead.id%>/delete" value= "Delete" class="red buttonstyle"/>
 
 </form>
+
+</div>
+</div>
+</div>

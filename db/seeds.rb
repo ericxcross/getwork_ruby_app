@@ -24,42 +24,42 @@ status2.save
 
 status3 = Status.new({
   'name' => 'Submit Application',
-  'color' => 'red',
+  'color' => 'mint',
   'archive' => false
 })
 status3.save
 
 status4 = Status.new({
   'name' => 'Reply Pending',
-  'color' => 'orange',
+  'color' => 'grey',
   'archive' => false
 })
 status4.save
 
 status5 = Status.new({
   'name' => 'Follow Up',
-  'color' => 'yellow',
+  'color' => 'mint',
   'archive' => false
 })
 status5.save
 
 status6 = Status.new({
   'name' => 'Interview',
-  'color' => 'red',
+  'color' => 'mint',
   'archive' => false
 })
 status6.save
 
 status7 = Status.new({
   'name' => 'Offer Received',
-  'color' => 'blue',
+  'color' => 'mint',
   'archive' => false
 })
 status7.save
 
 status8 = Status.new({
   'name' => 'Offer Accepted',
-  'color' => 'mint',
+  'color' => 'grey',
   'archive' => true
 })
 status8.save
@@ -84,13 +84,6 @@ status11 = Status.new({
   'archive' => false
 })
 status11.save
-
-status12 = Status.new({
-  'name' => 'No Current Tasks',
-  'color' => 'grey',
-  'archive' => false
-})
-status12.save
 
 ##SEED LEADS
 lead1 = Lead.new({

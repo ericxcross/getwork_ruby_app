@@ -66,6 +66,11 @@ post '/lead/:id/delete' do
   redirect "/lead"
 end
 
+#CANCEL NEW LEAD
+post '/lead/cancel' do
+  redirect "/lead"
+end
+
 #UPDATE LEAD
 post '/lead/:id' do
   lead = Lead.new(params)

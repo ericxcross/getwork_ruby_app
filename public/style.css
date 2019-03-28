@@ -302,11 +302,16 @@ footer .nav a {
 
 #action_list{
   border-top: 1px solid #E5E5E5;
+  border-left: 1px solid #E5E5E5;
+  border-right: 1px solid #E5E5E5;
+  background-color: #F7F7F7;
+
 }
+
 .action_list {
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
+  align-items: stretch;
   border-bottom: 1px solid #E5E5E5;
   width: 100%;
 }
@@ -317,36 +322,37 @@ footer .nav a {
 
 .action_list .item_1 {
   width: 240px;
+  padding-left: 18px;
+  margin: auto;
 }
 
 .action_list .item_3 {
   display: flex;
   flex-flow: column;
-  align-items: center;
   width: 240px;
-  padding-top: 12px;
+  text-align: center;
 }
 
 .action_list .item_4 {
-  width: 80px;
   display: flex;
-  flex-direction: column;
+  flex-flow: column;
+  align-items: stretch;
   text-align: center;
+  width: 80px;
+  height: 100%;
+  margin: 0;
 }
 
 .action_list .item_4 p {
   width: 100%;
-  padding: 5px;
+  height: 100%;
+  padding: 12px;
   margin: 0;
-  width: 100%;
+  box-sizing: border-box;
 }
 
-input[type="submit"] {
-  font-size: 0.7em;
-  font: 'Roboto';
-  font-weight: 400;
-  text-transform: uppercase;
-  border: none;
+input[type="img"] {
+  box-sizing: border-box;
 }
 
 .formbutton {
@@ -354,6 +360,9 @@ input[type="submit"] {
   width: 100%;
   padding-top: 12px;
   padding-bottom: 12px;
+  border: none;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .done_button {
@@ -362,6 +371,10 @@ input[type="submit"] {
   padding-top: 4px;
   padding-bottom: 4px;
   width: 120px;
+  border: 0px;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.6em;
 }
 
 .link:hover {
@@ -431,6 +444,7 @@ input[type="submit"] {
   border: none;
 }
 
+.action_form input[type="text"],
 .action_form textarea,
 .action_form select
 {
@@ -450,6 +464,7 @@ input[type="submit"] {
 
 .action_form input[type="checkbox"]:focus,
 .action_form input[type="date"]:focus,
+.action_form input[type="text"]:focus,
 .action_form textarea:focus,
 .action_form select:focus
 {
@@ -492,4 +507,7 @@ input[type="submit"] {
   font-size: 0.9em;
   font-weight: 300;
   width: 100%;
+}
+.spacing {
+  margin-top: 24px;
 }

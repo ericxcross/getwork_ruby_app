@@ -7,7 +7,7 @@
       <h2><%= @lead.name %></h2>
     </div>
     <a href="#action_list"><div class= "button  <%=@primary_action.status.color%>">
-      <h2 class="buttonstyle underline"><%= @primary_action.status.name %></h2>
+      <h2 class="buttonstyle <%="underline" if @primary_action.word_date%>"><%= @primary_action.status.name %></h2>
       <p><%= @primary_action.word_date %></p>
     </div></a>
   </div>
@@ -56,7 +56,7 @@
         <div class="item_4">
 
           <form action="/action/<%=action.id%>/edit" method="get">
-              <input class="light_grey  formbutton link" type="submit" value= "Edit"/>
+              <input class="grey  formbutton link" type="submit" value= "Edit"/>
           </form>
 
           <form action="/action/<%=action.id%>/delete" method="post">

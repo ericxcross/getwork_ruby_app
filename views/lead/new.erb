@@ -1,17 +1,30 @@
-<form action = "/lead" method="post">
-  <h2>Lead Details</h2>
+<div class="container">
+<div class="backdrop">
+<div class="content">
 
-  <label for = "name">Lead Name: </label>
+<h1>New Lead, New Opportunity</h1>
+
+<form class="action_form" method="post">
+
+
+  <h2>Lead</h2>
   <input type = "text" name = "name">
 
-  <label for = "company">Company: </label>
+  <h3>Company</h3>
   <input type = "text" id = "company" name = "company_name">
 
-  <label for ="link">URL Link: </label>
-  <input type ="text" name="link>
-
-  <label for = "summary">Summary: </label>
+  <h3>Summary</h3>
   <textarea name ="summary" rows="8" cols="80"></textarea>
 
-  <input type="submit" value= "Save Lead"/>
+  <h3>URL Link</h3>
+  <input type ="text" name="link">
+
+  <input type="submit" formaction="/lead" value= "Save Lead" class="mint buttonstyle spacing"/>
+
+  <input type="submit" formaction ="/lead/cancel" value= "Cancel" class="grey buttonstyle"/>
+
 </form>
+
+</div>
+</div>
+</div>
