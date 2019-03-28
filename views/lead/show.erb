@@ -1,5 +1,5 @@
 <div>
-  <div class="container">
+  <div>
     <div>
       <h1><%= @lead.company_name %></h1>
       <h2><%= @lead.name %></h2>
@@ -24,7 +24,7 @@
 </div>
 
 <div>
-  <div class="container">
+  <div>
     <%for action in @actions_list%>
       <div>
         <div class="item_1">
@@ -60,7 +60,7 @@
 
   </div>
 
-  <div class="container">
+  <div>
     <form action = "/action/new" method="post">
 
       <label for="status_id">Action</label>

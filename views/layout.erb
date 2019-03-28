@@ -2,17 +2,62 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+
     <title>Getwork Lead Tracker</title>
+
+    <link rel="stylesheet" href="/style.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700|Rubik:500,700" rel="stylesheet">
+
   </head>
   <body>
-    <nav>
-      <ul>
-        <li><a href="/lead">Leads</a></li>
-        <!-- <li><a href="/company">Companies</a></li> -->
-      </ul>
-    </nav>
-    <section id="content">
-      <%= yield %>
-    </section>
+
+    <header class = "container">
+      <div class= "header_box" id="flex">
+        <img src="images/getwork-logo-web.png" alt="getwork logo">
+        <nav>
+          <ul class="navbar navstyle">
+            <a href="/"><li>Home</li></a>
+            <a href="/lead"><li>Leads</li></a>
+            <a href="/settings"><li>Settings</li></a>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class = 'splash'>
+        <div class="quote">
+        <h1>“Relax. Look around.<br>Make a call.”</h1>
+        <h2>-Jocko Willink"</h2>
+        </div>
+        <img src="images/inspiring-image.jpg" alt="getwork logo">
+      </div>
+      <div class="backdrop">
+        <div class="content">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+
+    <footer class = "container">
+      <div class = "content" id="footer_flex">
+        <img class = 'footer_logo' src="images/getwork-logo-web-greyscale.png" alt="getwork logo">
+        <p>Add us on social media while you're still unemployed and have nothing to do...</p>
+        <div>
+          <img class = "social" src="images/facebook.png" alt="getwork logo">
+          <img class = "social" src="images/twitter.png" alt="getwork logo">
+          <img class = "social" src="images/linkedin.png" alt="getwork logo">
+          <img class = "social" src="images/github.png" alt="getwork logo">
+        </div>
+        <p>Just kidding, the links don't work, but you can email me if you have any questions.<br><a href="mailto: eric.cross@sympatico.ca"><br><u>support@getwork.com</u></a></p>
+        <div class = "nav">
+          <a href="/">Home</a>
+          <a href="/lead">Leads</a>
+          <a href="/settings">Settings</a>
+        </div>
+      </div>
+    </footer>
+
   </body>
 </html>

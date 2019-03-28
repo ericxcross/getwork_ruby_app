@@ -1,0 +1,193 @@
+body {
+  font-family: "Roboto";
+  font-weight: 400;
+  background-color: #E5E5E5;
+  margin: 0px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+.navstyle {
+  font-family: "Rubik";
+  font-weight: 500;
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
+header {
+  background:#191919;
+  opacity: 0.95;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  color: white;
+  z-index: 100;
+}
+
+.header_box{
+  grid-column: 2 / span 3;
+}
+
+#flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media all and (max-width: 900px) {
+  #flex {
+    flex-direction: column;
+  }
+}
+
+#flex img {
+  height: 1.8em;
+  width: auto;
+  align-self: center;
+}
+
+#flex nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-self: center;
+  text-align: center;
+  color: white;
+}
+
+#flex nav ul a {
+  padding: 18px 36px;
+  height: 100%;
+}
+
+#flex nav ul a:hover {
+  background: #65FF98;
+  opacity: 0.9;
+}
+
+.splash{
+  grid-column: 1 / span 5;
+  top: 0;
+  background: black;
+
+}
+.splash img{
+  width: 100%;
+  overflow: hidden;
+  opacity: 0.5;
+}
+
+.splash .quote{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  opacity: 1;
+  z-index: 20;
+}
+
+.backdrop {
+  grid-column: 2 / span 3;
+  background: white;
+  padding: 18px;
+  margin-top: 18px;
+}
+
+.backdrop > .content {
+  grid-column: 3 / span 1;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: minmax(12px,1fr) 18px minmax(320px,1080px) 18px minmax(12px,1fr);
+}
+
+h1 {
+  font-family: "Rubik";
+  font-weight: 700;
+  font-size: 4em;
+}
+
+h2 {
+  font-family: "Rubik";
+  font-weight: 500;
+  font-size: 2em;
+}
+
+h3 {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 1.2em
+}
+
+p {
+  font-family: "Roboto";
+  font-weight: 300;
+  font-size: 0.9em
+}
+
+footer {
+  background:#65FF98;
+  opacity: 0.95;
+  width: 100%;
+  color: black;
+}
+
+footer .content {
+  grid-column: 2 / span 3;
+}
+
+#footer_flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+footer .footer_logo {
+  align-self: center;
+  height: auto;
+  width: auto;
+  max-width: 360px;
+  padding: 48px 36px 48px 36px;
+}
+
+footer .social {
+  align-self: center;
+  height: auto;
+  width: 36px;
+  margin: 0px 12px 0px 12px;
+}
+
+.social:hover {
+  opacity: 0.5;
+  transition: 0.3s;
+}
+
+footer .nav {
+  font-family: "Roboto";
+  font-weight: 300;
+  font-size: 0.9em;
+  padding: 48px 0px 24px 0px;
+}
+
+footer .nav a {
+  margin: 36px;
+}
