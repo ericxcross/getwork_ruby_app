@@ -8,6 +8,13 @@ require_relative('../models/status.rb')
 
 also_reload('../models/*')
 
+#TO NEW
+get '/action/:id/new' do
+  @lead = Lead.find(params[:id])
+  @status_list = Status.all
+  erb (:"/action/new")
+end
+
 #TO EDIT
 get '/action/:id/edit' do
   @action = Action.find(params[:id])

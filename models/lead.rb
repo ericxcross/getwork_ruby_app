@@ -59,7 +59,7 @@ class Lead
   end
 
   def self.all_by_name() #returns leads in alphabetical order
-    sql = 'SELECT leads.* FROM leads ORDER BY name DESC'
+    sql = 'SELECT leads.* FROM leads ORDER BY company_name ASC'
     result = SqlRunner.run(sql)
     return result.map{|hash| Lead.new(hash)}
   end
@@ -80,7 +80,7 @@ class Lead
       order << key
     end
     sorted_leads = order.sort_by{|a,b| b}
-    return sorted_leads.map{|element| element[0]}
+    return sorted_leads.map{|element| element[0]}.reverse
   end
 
   def self.all_by_update
@@ -97,7 +97,7 @@ class Lead
   end
 
   def actions()
-    sql = 'SELECT * FROM actions WHERE lead_id = $1 ORDER BY completed DESC, date_completed DESC'
+    sql = 'SELECT * FROM actions WHERE lead_id = $1 ORDER BY completed DESC, id ASC'
     values = [@id]
     result = SqlRunner.run(sql, values)
     return result.map{|hash| Action.new(hash)}
@@ -112,12 +112,7 @@ class Lead
         "status_id" => Status.no_actions,
         "lead_id" => @id
         })
-    elsif first_action.completed == 't'
-      first_action = Action.new({
-        "status_id" => Status.all_actions_completed,
-        "lead_id" => @id
-        })
-    end
+      end
      #return first action
     return first_action
   end

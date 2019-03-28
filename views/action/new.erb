@@ -13,7 +13,7 @@
     </div></a>
   </div>
 
-<form class = "action_form" action = "/action/<%=@action.id%>" method="post">
+<form class = "action_form" action = "/action/new" method="post">
   <h2>New Status</h2>
   <select id="status" name="status_id">
     <%for status in @status_list%>
@@ -22,18 +22,18 @@
   </select>
 
   <h3>Summary</h3>
-  <textarea name ="summary" rows="4" cols="80"><%=@action.summary%></textarea>
+  <textarea name ="summary" rows="4" cols="80"></textarea>
 
   <input type="hidden" name="lead_id" value=<%=@lead.id%>>
 
   <div class="flexbox">
     <label for "date_completed">
       <span><h3>Date</h3></span>
-      <input type="date" name="date_completed" value=<%=@action.date_completed%>>
+      <input type="date" name="date_completed" value=<%=Date.today%>>
     </label>
     <label for "completed">
       <span><h3>Completed</h3></span>
-      <input type="checkbox" name="completed" value="t" <%='checked' if @action.completed == 't'%>>
+      <input type="checkbox" name="completed" value="t">
     </label>
   </div>
 

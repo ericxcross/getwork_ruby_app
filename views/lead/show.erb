@@ -70,30 +70,7 @@
 
   </div>
 
-  <div>
-    <form action = "/action/new" method="post">
-
-      <label for="status_id">Action</label>
-      <select id="status" name="status_id">
-        <%for status in @status_list%>
-          <option value="<%=status.id%>" <%='selected' if @lead && @lead.primary_action == (status.id - 1)%>><%=status.name%></option>
-        <%end%>
-      </select>
-
-      <label for="date_completed">Date</label>
-      <input type="date" name="date_completed" value=<%=Date.today%>>
-
-      <label for = "summary">Summary: </label>
-      <textarea name ="summary" rows="4" cols="80"></textarea>
-
-      <label for="completed">Completed: </label>
-      <input type="checkbox" name="completed" value="t">
-
-      <input type="hidden" name="lead_id" value=<%=@lead.id%>>
-
-      <input type="submit" value= "New Action"/>
-    </form>
-  </div>
+  <a href="/action/<%=@lead.id%>/new" class="button buttonstyle">Update Status</a>
 </div>
 </div>
 </div>

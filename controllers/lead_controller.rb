@@ -11,22 +11,25 @@ also_reload('../models/*')
 #SORTING GETTERS
 get '/lead' do
   @leads = Lead.all_by_update
-  # return "banana"
+  @sort = 'update'
   erb (:"/lead/index")
 end
 
 get '/lead/sort-by-status' do
   @leads = Lead.all_by_status()
+  @sort = 'status'
   erb (:"/lead/index")
 end
 
 get '/lead/sort-by-name' do
   @leads = Lead.all_by_name()
+  @sort = 'name'
   erb (:"/lead/index")
 end
 
 get '/lead/sort-by-action-date' do
   @leads = Lead.all_by_action_date
+  @sort = 'action_date'
   erb (:"/lead/index")
 end
 

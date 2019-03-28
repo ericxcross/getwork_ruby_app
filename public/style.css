@@ -128,6 +128,10 @@ header {
   grid-template-columns: minmax(12px,1fr) 18px minmax(320px,1080px) 18px minmax(12px,1fr);
 }
 
+.bold {
+  font-weight: 700;
+}
+
 h1 {
   font-family: "Rubik";
   font-weight: 700;
@@ -140,8 +144,8 @@ h2 {
   font-family: "Rubik";
   font-weight: 500;
   font-size: 2em;
-  margin-top: 0.4em;
-  margin-bottom: 0.4em;
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
 }
 
 h3 {
@@ -215,7 +219,7 @@ footer .nav a {
   margin: auto;
   text-align: center;
   background: #65FF98;
-  width: 300px;
+  width: 240px;
   padding: 12px;
   margin-top: 24px;
   margin-bottom: 36px;
@@ -324,7 +328,7 @@ footer .nav a {
 }
 
 .action_list .item_4 {
-  width: 120px;
+  width: 80px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -369,7 +373,7 @@ input[type="submit"] {
 }
 
 .red {
-  background-color: #FF6347;
+  background-color: #ff7961;
 }
 
 .orange {
@@ -404,7 +408,7 @@ input[type="submit"] {
   .item_2 { flex: 2 0px; }
 
   .item_1 { order: 1; }
-  .item_2   { order: 2; }
+  .item_2 { order: 2; }
   .item_3 { order: 3; }
   .item_4 { order: 4; }
 }
@@ -418,4 +422,74 @@ input[type="submit"] {
     flex-flow: column;
     text-align: center;
   }
+}
+
+.action_form{
+	margin: 0;
+	padding: 18px 18px 36px 18px;
+	background: #F7F7F7;
+  border: none;
+}
+
+.action_form textarea,
+.action_form select
+{
+	outline: none;
+  box-sizing: border-box;
+	background: #fff;
+	margin-bottom: 12px;
+	border: 1px solid #ccc;
+  border-radius: 0;
+	padding: 6px;
+	color: #555;
+	font: 'Roboto';
+  font-size: 0.9em;
+  font-weight: 300;
+  width: 100%;
+}
+
+.action_form input[type="checkbox"]:focus,
+.action_form input[type="date"]:focus,
+.action_form textarea:focus,
+.action_form select:focus
+{
+	box-shadow: 0 0 5px #65FF98;
+	padding: 6px;
+	border: 1px solid #65FF98;
+}
+
+.action_form input[type="submit"]{
+	box-sizing: border-box;
+	padding: 18px;
+  margin-bottom: 1px;
+  border: 0;
+  width: 100%;
+  font-size: 1em;
+}
+
+.action_form input[type="submit"]:hover {
+	opacity: 0.5;
+}
+
+.action_form .flexbox label{
+	display: inline-block;
+  margin-right: 60px;
+}
+
+.action_form .flexbox label span{
+	display: inline-block;
+  margin-bottom: 24px;
+}
+
+.action_form input[type="checkbox"],
+.action_form input[type="date"], {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  padding: 6px;
+  color: #555;
+  font: 'Roboto';
+  font-size: 0.9em;
+  font-weight: 300;
+  width: 100%;
 }

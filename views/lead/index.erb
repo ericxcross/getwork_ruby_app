@@ -14,10 +14,10 @@
 
 <ul class = "sort">
   <li>sort by:</li>
-  <li><a href="/lead#main_content">last updated</a></li>
-  <li><a href="/lead/sort-by-status#main_content">status</a></li>
-  <li><a href="/lead/sort-by-name#main_content">alphabetical</a></li>
-  <li><a href="/lead/sort-by-action-date#main_content">action date</a></li>
+  <li><a href="/lead#main_content" class=<%="bold" if @sort == 'update'%>>last updated</a></li>
+  <li><a href="/lead/sort-by-name#main_content" class=<%="bold" if @sort == 'name'%>>company name</a></li>
+  <li><a href="/lead/sort-by-status#main_content" class=<%="bold" if @sort == 'status'%>>status</a></li>
+  <li><a href="/lead/sort-by-action-date#main_content"  class=<%="bold" if @sort == 'action_date'%>>upcoming tasks</a></li>
 </ul>
 
 <div class="lead_list">
@@ -44,6 +44,8 @@
     </a>
   <%end%>
 </div>
+
+<a href="/lead/new" class="button buttonstyle">Add New Lead</a>
 
 </div>
 </div>
