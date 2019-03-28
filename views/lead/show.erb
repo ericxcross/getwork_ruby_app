@@ -1,34 +1,39 @@
-<div>
-  <div>
+<div class="container no_splash">
+<div class="backdrop">
+<div class="content">
+  <div class= "status_bar">
     <div>
       <h1><%= @lead.company_name %></h1>
       <h2><%= @lead.name %></h2>
     </div>
-    <div>
-      <h3>Status: <%= @primary_action.status.name %></h3>
-      <p><%= @primary_action.word_date %>
-    </div>
+    <a href="#action_list"><div class= "button  <%=@primary_action.status.color%>">
+      <h2 class="buttonstyle underline"><%= @primary_action.status.name %></h2>
+      <p><%= @primary_action.word_date %></p>
+    </div></a>
   </div>
 
   <div>
     <h3>Summary</h3>
     <p><%= @lead.summary %></p>
 
-    <div>
-      <a href="https://<%=@lead.link %>">Link</a>
-      <a href="/lead/<%=@lead.id%>/edit">Edit</a>
+    <div class= "status_bar buttonstyle">
+      <a class="button grey" href="https://<%=@lead.link %>">Post Link</a>
+      <a class="button mint" href="/lead/<%=@lead.id%>/edit">Edit Description</a>
     </div>
-
-    <a href="/lead">Back to leads</a>
   </div>
 </div>
 
 <div>
-  <div>
+  <div id = "action_list">
     <%for action in @actions_list%>
-      <div>
+      <div class = "action_list">
         <div class="item_1">
-          <h2><%=action.status.name%></h2>
+          <h3 class="buttonstyle"><%=action.status.name%></h3>
+          <%if action.completed == 'f'%>
+          <p>Upcoming</p>
+          <%else%>
+          <p>Complete</p>
+          <%end%>
         </div>
 
         <div class="item_2">
@@ -36,23 +41,28 @@
         </div>
 
         <div class="item_3">
-          <h3><%=action.word_date%></h3>
+          <p><%=action.word_date%></p>
           <%if action.completed == 'f'%>
           <form action="/action/<%=action.id%>/complete" method="get">
-            <input type="submit" value= "Mark Complete"/>
+            <input class="mint done_button link" type="submit" value= "Mark Completed"/>
           </form>
           <%else%>
-          <p>COMPLETE</p>
+          <form action="/action/<%=action.id%>/incomplete" method="get">
+            <input class="grey done_button link" type="submit" value= "COMPLETED"/>
+          </form>
           <%end%>
         </div>
 
         <div class="item_4">
+
           <form action="/action/<%=action.id%>/edit" method="get">
-            <input type="submit" value= "Edit"/>
+              <input class="light_grey  formbutton link" type="submit" value= "Edit"/>
           </form>
+
           <form action="/action/<%=action.id%>/delete" method="post">
-            <input type="submit" value= "Delete"/>
+              <input class="red formbutton link" type="submit" value= "Delete"/>
           </form>
+
         </div>
 
       </div>
@@ -77,11 +87,13 @@
       <textarea name ="summary" rows="4" cols="80"></textarea>
 
       <label for="completed">Completed: </label>
-      <input type="checkbox" name="completed" value="true">
+      <input type="checkbox" name="completed" value="t">
 
       <input type="hidden" name="lead_id" value=<%=@lead.id%>>
 
       <input type="submit" value= "New Action"/>
     </form>
   </div>
+</div>
+</div>
 </div>

@@ -69,9 +69,9 @@ class Action
     date = DateTime.parse(date_string)
     if @completed == 'f'
       if date.to_date > Date.today
-        return "Due #{date.strftime("%B %d, %Y")}"
+        return "Upcoming #{date.strftime("%B %d, %Y")}"
       elsif date.to_date == Date.today
-        return "Due Today"
+        return "Today"
       elsif date.to_date < Date.today
         return "<strong>Overdue #{date.strftime("%B %d, %Y")}</strong>"
       end

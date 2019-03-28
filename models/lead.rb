@@ -55,7 +55,7 @@ class Lead
       order << key
     end
     sorted_leads = order.sort_by{|a,b| b}
-    return sorted_leads.map{|element| element[0]}
+    return sorted_leads.map{|element| element[0]}.reverse
   end
 
   def self.all_by_name() #returns leads in alphabetical order

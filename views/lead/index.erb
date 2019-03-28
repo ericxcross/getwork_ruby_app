@@ -1,5 +1,5 @@
 <div class="hero-image">
-  <img src="images/inspiring-image.jpg" alt="inspiring image">
+  <img src="/images/inspiring-image.jpg" alt="inspiring image">
   <div class="hero-text">
     <h1>Relax.<br>Look around.<br>Make a call.</h1>
     <h2>-Jocko Willink</h2>
@@ -14,10 +14,10 @@
 
 <ul class = "sort">
   <li>sort by:</li>
-  <li><a href="/lead">last updated</a></li>
-  <li><a href="/lead/sort-by-status">status</a></li>
-  <li><a href="/lead/sort-by-name">alphabetical</a></li>
-  <li><a href="/lead/sort-by-action-date">action date</a></li>
+  <li><a href="/lead#main_content">last updated</a></li>
+  <li><a href="/lead/sort-by-status#main_content">status</a></li>
+  <li><a href="/lead/sort-by-name#main_content">alphabetical</a></li>
+  <li><a href="/lead/sort-by-action-date#main_content">action date</a></li>
 </ul>
 
 <div class="lead_list">
@@ -30,13 +30,15 @@
           <p>last updated on <%= lead.word_date %></p>
         </div>
         <div class="item_2">
-          <span>
+          <span class="center">
           <p><%= lead.summary[0,255] %><%=p '...' if lead.summary.length > 255%></p>
           </span>
         </div>
-        <div class="item_3">
-          <h3><%= lead.primary_action.status.name%></h3>
-          <p><%= lead.primary_action.word_date%></p>
+        <div class="item_3 <%=lead.primary_action.status.color%>">
+          <div class="center">
+            <h3 class="buttonstyle"><%= lead.primary_action.status.name%></h3>
+            <p><%= lead.primary_action.word_date%></p>
+          </div>
         </div>
     </div>
     </a>

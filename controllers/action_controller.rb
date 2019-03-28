@@ -22,7 +22,7 @@ get '/action/:id/complete' do
   newly_completed_action.completed = true
   newly_completed_action.date_completed = DateTime.now
   newly_completed_action.update
-  redirect "/lead/#{newly_completed_action.lead_id}}"
+  redirect "/lead/#{newly_completed_action.lead_id}"
 end
 
 #DELETE ACTION
@@ -34,6 +34,7 @@ end
 
 #NEW ACTION
 post '/action/new' do
+  params['completed'] = 'f' if params['completed'] != 't'
   action = Action.new(params)
   action.save
   redirect "/lead/#{action.lead_id}"
@@ -41,6 +42,7 @@ end
 
 #EDIT ACTION
 post '/action/:id' do
+  params['completed'] = 'f' if params['completed'] != 't'
   action = Action.new(params)
   action.update
   redirect "/lead/#{action.lead_id}"

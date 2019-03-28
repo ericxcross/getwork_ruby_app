@@ -21,7 +21,7 @@
   <textarea name ="summary" rows="4" cols="80"><%=@action.summary%></textarea>
 
   <label for="completed">Completed: </label>
-  <input type="checkbox" name="completed" value="true" <%='checked' if @action.completed == 't'%>>
+  <input type="checkbox" name="completed" value="t" <%='checked' if @action.completed == 't'%>>
 
   <input type="hidden" name="id" value=<%=@action.id%>>
   <input type="hidden" name="lead_id" value=<%=@action.lead_id%>>
