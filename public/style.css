@@ -311,7 +311,7 @@ footer .nav a {
 .action_list {
   display: flex;
   flex-flow: row wrap;
-  align-items: stretch;
+  align-items: center;
   border-bottom: 1px solid #E5E5E5;
   width: 100%;
 }

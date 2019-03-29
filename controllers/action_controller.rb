@@ -32,6 +32,15 @@ get '/action/:id/complete' do
   redirect "/lead/#{newly_completed_action.lead_id}"
 end
 
+#MARK ACTION COMPLETE
+get '/action/:id/incomplete' do
+  newly_completed_action = Action.find(params[:id])
+  newly_completed_action.completed = false
+  newly_completed_action.date_completed = DateTime.now
+  newly_completed_action.update
+  redirect "/lead/#{newly_completed_action.lead_id}"
+end
+
 #DELETE ACTION
 post 'action/:id/delete' do
   deleted_action = Action.find(params[:id])
