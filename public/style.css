@@ -88,8 +88,8 @@ header {
 }
 
 .hero-image {
-  height: 77vh;
-  background-color: black;
+  height: 100vh;
+  background-color: blue;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -100,7 +100,7 @@ header {
   opacity: 0.5;
   object-fit: cover;
   width: 100%;
-  height: inherit;
+  height: 100vh;
 }
 
 .hero-text {
@@ -260,7 +260,7 @@ footer .nav a {
 }
 
 .lead .item_1 {
-  width: 260px;
+  min-width: 260px;
 }
 
 .lead .item_2 {

@@ -62,11 +62,17 @@ class Action
 
 
 
-
+# Function to retrieve date in a string format
   def word_date()
+    #Find date action was completed (from database using date_completed function)
     date_string = self.date_completed
+    #Return if date does not exist
     return if date_string == nil
+    date_string = self.date_completed
+    #Parse date into DATETIME format
     date = DateTime.parse(date_string)
+    #if the action has not been completed return string anouncing when the action
+    #will occur. Logic needed to check if the date is upcoming or overdue.
     if @completed == 'f'
       if date.to_date > Date.today
         return "Upcoming<br>#{date.strftime("%B %e, %Y")}"
@@ -75,6 +81,7 @@ class Action
       elsif date.to_date < Date.today
         return "<strong>Overdue<br>#{date.strftime("%B %e, %Y")}</strong>"
       end
+    #if action has already been completed, return the date completed.
     else
       return "#{date.strftime("%B %e, %Y")}"
     end

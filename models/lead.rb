@@ -103,7 +103,9 @@ class Lead
     return result.map{|hash| Action.new(hash)}
   end
 
-  def primary_action() #lead.primaryaction
+  # Primary action checks which action has priority in the lead
+  def primary_action()
+    #Retrieve actions from above 
     actions = actions()
     first_action = actions.last
     #return default if no actions exist or most recent action is completed
