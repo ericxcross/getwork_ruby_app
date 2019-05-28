@@ -75,11 +75,11 @@ class Action
     #will occur. Logic needed to check if the date is upcoming or overdue.
     if @completed == 'f'
       if date.to_date > Date.today
-        return "Upcoming<br>#{date.strftime("%B %e, %Y")}"
+        return "DUE: #{date.strftime("%B %e, %Y")}"
       elsif date.to_date == Date.today
-        return "Upcoming<br>Today"
+        return "DUE Today"
       elsif date.to_date < Date.today
-        return "<strong>Overdue<br>#{date.strftime("%B %e, %Y")}</strong>"
+        return "OVERDUE: #{date.strftime("%B %e, %Y")}"
       end
     #if action has already been completed, return the date completed.
     else

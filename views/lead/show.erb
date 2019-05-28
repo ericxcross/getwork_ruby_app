@@ -41,28 +41,38 @@
         </div>
 
         <div class="item_3">
-          <p><%=action.word_date%></p>
+          <script type="text/javascript">
+            function clicked() {
+               if (confirm('Do you want to submit?')) {
+                   yourformelement.submit();
+               } else {
+                   return false;
+               }
+            }
+          </script>
           <%if action.completed == 'f'%>
-          <form action="/action/<%=action.id%>/complete" method="get">
-            <input class="mint done_button link" type="submit" value= "Mark Completed"/>
-          </form>
+            <%if action.word_date[0,1] == 'O'%>
+              <form action="/action/<%=action.id%>/complete" method="get">
+                <input type="submit" value= "<%=action.word_date%>" class="formbutton solid red link" onclick="clicked()""/>
+              </form>
+            <%elsif action.word_date[0,1] == 'D'%>
+              <form action="/action/<%=action.id%>/complete" method="get">
+                <input type="submit" value= "<%=action.word_date%>" class="formbutton solid mint link"/>
+              </form>
+            <%end%>
           <%else%>
           <form action="/action/<%=action.id%>/incomplete" method="get">
-            <input class="grey done_button link" type="submit" value= "COMPLETED"/>
+            <input type="submit" value= "COMPLETED" class="formbutton border link"/>
           </form>
           <%end%>
-        </div>
 
-        <div class="item_4">
-
-          <form action="/action/<%=action.id%>/edit" method="get">
-              <input class="grey  formbutton link" type="submit" value= "Edit"/>
+          <form action="/action/<%=action.id%>/edit" method="get" class="editbutton link">
+              <input type="image" src="../images/edit.png" alt="edit" class="image" />
           </form>
 
-          <form action="/action/<%=action.id%>/delete" method="post">
-              <input class="red formbutton link" type="submit" value= "Delete"/>
+          <form action="/action/<%=action.id%>/delete" method="post" class="editbutton link" >
+              <input type="image" src="../images/delete.png" alt= "Delete" class="image"/>
           </form>
-
         </div>
 
       </div>
